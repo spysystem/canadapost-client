@@ -1,0 +1,435 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Canada Post REST Client
+  description: Library for Canada Post REST API
+  
+produces: 
+  - application/xml
+
+consumes:
+  - application/xml
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+
+security:
+  - basicAuth: []
+
+parameters:
+  strCustomer:
+    name: strCustomer
+    description: Customer Number
+    type: string
+    in: path
+    required: true
+  strMobo:
+    name: strMobo
+    description: Mailed On Behalf Of Custoner Number
+    type: string
+    in: path
+    required: true
+
+responses:
+  ErrorMessage:
+    description: Error Message
+    schema:
+      $ref: '#/definitions/ErrorResponseObject'
+
+paths:
+  /{strCustomer}/{strMobo}/shipment:
+    parameters:
+      - $ref: '#/parameters/strCustomer'
+      - $ref: '#/parameters/strMobo'
+    post:
+      operationId: createShipment
+      summary: creates a Shipment
+      consumes:
+      - application/vnd.cpc.shipment-v8+xml
+      produces:
+      - application/vnd.cpc.shipment-v8+xml
+      parameters:
+      - name: Accept-language
+        in: header
+        type: string
+      - name: xmlbody
+        in: body
+        description: Shipment data
+        schema:
+          $ref: '#/definitions/shipment'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/shipment-info'
+        202:
+          $ref: '#/responses/ErrorMessage'
+        400:
+          $ref: '#/responses/ErrorMessage'
+        401:
+          $ref: '#/responses/ErrorMessage'
+        403:
+          $ref: '#/responses/ErrorMessage'
+        404:
+          $ref: '#/responses/ErrorMessage'
+        406:
+          $ref: '#/responses/ErrorMessage'
+        415:
+          $ref: '#/responses/ErrorMessage'
+        500:
+          $ref: '#/responses/ErrorMessage'
+
+  /{strCustomer}/{strMobo}/manifest:
+    parameters:
+      - $ref: '#/parameters/strCustomer'
+      - $ref: '#/parameters/strMobo'
+    post:
+      operationId: transmitShipment
+      summary: transmits a Shipment
+      consumes:
+      - application/vnd.cpc.shipment-v8+xml
+      produces:
+      - application/vnd.cpc.shipment-v8+xml
+      parameters:
+      - name: Accept-language
+        in: header
+        type: string
+      - name: xmlbody
+        in: body
+        description: Transmit set data
+        schema:
+          $ref: '#/definitions/transmit-set'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/manifests'
+        202:
+          $ref: '#/responses/ErrorMessage'
+        400:
+          $ref: '#/responses/ErrorMessage'
+        401:
+          $ref: '#/responses/ErrorMessage'
+        403:
+          $ref: '#/responses/ErrorMessage'
+        404:
+          $ref: '#/responses/ErrorMessage'
+        406:
+          $ref: '#/responses/ErrorMessage'
+        415:
+          $ref: '#/responses/ErrorMessage'
+        500:
+          $ref: '#/responses/ErrorMessage'
+
+definitions:
+  ErrorResponseObject:
+    type: array
+    items:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+      xml:
+        name: message
+    xml:
+      name: messages
+      wrapped: true
+
+  transmit-set:
+    type: object
+    properties:
+      group-ids:
+        type: array
+        items:
+          type: string
+          xml:
+            name: group-id
+        xml:
+          name: group-ids
+          wrapped: true
+      requested-shipping-point:
+        type: string
+        description: Postal Code of Warehouse
+      cpc-pickup-indicator:
+        type: boolean
+        description: True if Canada Post should pick the parcels
+      method-of-payment:
+        type: string
+        description: Account
+      manifest-address:
+        type: object
+        properties:
+          manifest-name:
+            type: string
+          manifest-company:
+            type: string
+          phone-number:
+            type: string
+          address-details:
+            $ref: '#/definitions/address-details'
+    xml:
+      name: transmit-set
+      namespace: http://www.canadapost.ca/ws/manifest-v8
+
+  shipment:
+    type: object
+    properties:
+      customer-request-id:
+        type: string
+        description: Customer ID
+      group-id:
+        type: string
+        description: Group (always Spy-XXX)
+      requested-shipping-point:
+        type: string
+        description: Postal Code of Warehouse
+      cpc-pickup-indicator:
+        type: boolean
+        description: True if Canada Post should pick the parcels
+      delivery-spec:
+        $ref: '#/definitions/delivery-spec'
+    xml:
+      name: shipment
+      namespace: http://www.canadapost.ca/ws/shipment-v8
+
+  delivery-spec:
+    type: object
+    properties:
+      service-code:
+        type: string
+        description: Shipment Type
+      sender:
+        type: object
+        properties:
+          name:
+            type: string
+          company:
+            type: string
+          contact-phone:
+            type: string
+          address-details:
+            $ref: '#/definitions/address-details'
+      destination:
+        type: object
+        properties:
+          name:
+            type: string
+          company:
+            type: string
+          additional-address-info:
+            type: string
+          client-voice-number:
+            type: string
+          address-details:
+            $ref: '#/definitions/address-details'
+      parcel-characteristics:
+        type: object
+        properties:
+          weight:
+            type: number
+            description: in kg. pattern = ###.###
+      print-preferences:
+        type: object
+        properties:
+          output-format:
+            type: string
+            description: 8.5x11
+          encoding:
+            type: string
+            description: PDF
+      preferences:
+        type: object
+        properties:
+          show-packing-instructions:
+            type: boolean
+          show-postage-rate:
+            type: boolean
+            description: mandatory for international shipping
+          show-insured-value:
+            type: boolean
+            description: mandatory for international insured shipping
+      references:
+        type: object
+        properties:
+          customer-ref-1:
+            type: string
+          customer-ref-2:
+            type: string
+      customs:
+        type: object
+        properties:
+          currency:
+            type: string
+          conversion-from-cad:
+            type: number
+            description: conversion rate from Canadian dollar to sales currency
+          reason-for-export:
+            type: string
+            description: SOG
+          sku-list:
+            type: array
+            items:
+              $ref: '#/definitions/item'
+            xml:
+              name: sku-list
+              wrapped: true
+      settlement-info:
+        type: object
+        properties:
+          contract-id:
+            type: string
+          intended-method-of-payment:
+            type: string
+            description: Account
+  item:
+    type: object
+    properties:
+      customs-number-of-units:
+        type: integer
+      customs-unit-of-measure:
+        type: string
+        description: PCE
+      customs-description:
+        type: string
+      sku:
+        type: string
+      hs-tariff-code:
+        type: string
+        description: pattern = 9999.99.99.99
+      unit-weight:
+        type: number
+        description: pattern = ##.###, in kg
+      customs-value-per-unit:
+        type: number
+        description: pattern = #####.##
+      country-of-origin:
+        type: string
+    xml:
+      name: item
+
+  address-details:
+    type: object
+    properties:
+      address-line1:
+        type: string
+      address-line2:
+        type: string
+      city:
+        type: string
+      prov-state:
+        type: string
+      country-code:
+        type: string
+      postal-zip-code:
+        type: string
+    xml:
+      name: address-details
+
+  shipment-info:
+    type: object
+    properties:
+      customer-request-id:
+        type: string
+      shipment-id:
+        type: string
+      shipment-status:
+        type: string
+      tracing-pin:
+        type: string
+      links:
+        type: array
+        items:
+          type: object
+          properties:
+            rel:
+              type: string
+              xml:
+                attribute: true
+            href:
+              type: string
+              xml:
+                attribute: true
+            media-type:
+              type: string
+              xml:
+                attribute: true
+            index:
+              type: string
+              xml:
+                attribute: true
+          xml:
+            name: link
+        xml:
+          name: links
+          wrapped: true
+    xml:
+      name: shipement-info
+
+  manifest:
+    type: object
+    properties:
+      po-number:
+        type: string
+      links:
+        type: array
+        items:
+          type: object
+          properties:
+            rel:
+              type: string
+              xml:
+                attribute: true
+            href:
+              type: string
+              xml:
+                attribute: true
+            media-type:
+              type: string
+              xml:
+                attribute: true
+            index:
+              type: string
+              xml:
+                attribute: true
+          xml:
+            name: link
+        xml:
+          name: links
+          wrapped: true
+    xml:
+      name: manifest
+
+  manifests:
+    type: array
+    items:
+      type: object
+      properties:
+        rel:
+          type: string
+          xml:
+            attribute: true
+        href:
+          type: string
+          xml:
+            attribute: true
+        media-type:
+          type: string
+          xml:
+            attribute: true
+        index:
+          type: string
+          xml:
+            attribute: true
+      xml:
+        name: link
+    xml:
+      name: manifests
+      wrapped: true
+
+schemes:
+ - https
+host: ct.soa-gw.canadapost.ca
+basePath: /rs

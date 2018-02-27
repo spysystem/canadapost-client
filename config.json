@@ -1,0 +1,8 @@
+{
+	"invokerPackage": "CanadaPost",
+	"modelPackage": "Model",
+	"apiPackage": "Api",
+	"packagePath": "",
+	"composerVendorName": "spysystem",
+	"composerProjectName": "canadapost-client"
+}
