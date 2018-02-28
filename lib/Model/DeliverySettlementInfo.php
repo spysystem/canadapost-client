@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecPrintpreferences
+ * DeliverySettlementInfo
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecPrintpreferences Class Doc Comment
+ * DeliverySettlementInfo Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
+class DeliverySettlementInfo implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_printpreferences';
+    protected static $swaggerModelName = 'delivery-settlement-info';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'output_format' => 'string',
-        'encoding' => 'string'
+        'contract_id' => 'string',
+        'intended_method_of_payment' => 'string'
     ];
 
     /**
@@ -67,8 +67,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'output_format' => null,
-        'encoding' => null
+        'contract_id' => null,
+        'intended_method_of_payment' => null
     ];
 
     /**
@@ -98,8 +98,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'output_format' => 'output-format',
-        'encoding' => 'encoding'
+        'contract_id' => 'contract-id',
+        'intended_method_of_payment' => 'intended-method-of-payment'
     ];
 
     /**
@@ -108,8 +108,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'output_format' => 'setOutputFormat',
-        'encoding' => 'setEncoding'
+        'contract_id' => 'setContractId',
+        'intended_method_of_payment' => 'setIntendedMethodOfPayment'
     ];
 
     /**
@@ -118,8 +118,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'output_format' => 'getOutputFormat',
-        'encoding' => 'getEncoding'
+        'contract_id' => 'getContractId',
+        'intended_method_of_payment' => 'getIntendedMethodOfPayment'
     ];
 
     /**
@@ -182,8 +182,8 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['output_format'] = isset($data['output_format']) ? $data['output_format'] : null;
-        $this->container['encoding'] = isset($data['encoding']) ? $data['encoding'] : null;
+        $this->container['contract_id'] = isset($data['contract_id']) ? $data['contract_id'] : null;
+        $this->container['intended_method_of_payment'] = isset($data['intended_method_of_payment']) ? $data['intended_method_of_payment'] : null;
     }
 
     /**
@@ -212,49 +212,49 @@ class DeliveryspecPrintpreferences implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets output_format
+     * Gets contract_id
      *
      * @return string
      */
-    public function getOutputFormat()
+    public function getContractId()
     {
-        return $this->container['output_format'];
+        return $this->container['contract_id'];
     }
 
     /**
-     * Sets output_format
+     * Sets contract_id
      *
-     * @param string $output_format 8.5x11
+     * @param string $contract_id contract_id
      *
      * @return $this
      */
-    public function setOutputFormat($output_format)
+    public function setContractId($contract_id)
     {
-        $this->container['output_format'] = $output_format;
+        $this->container['contract_id'] = $contract_id;
 
         return $this;
     }
 
     /**
-     * Gets encoding
+     * Gets intended_method_of_payment
      *
      * @return string
      */
-    public function getEncoding()
+    public function getIntendedMethodOfPayment()
     {
-        return $this->container['encoding'];
+        return $this->container['intended_method_of_payment'];
     }
 
     /**
-     * Sets encoding
+     * Sets intended_method_of_payment
      *
-     * @param string $encoding PDF
+     * @param string $intended_method_of_payment Account
      *
      * @return $this
      */
-    public function setEncoding($encoding)
+    public function setIntendedMethodOfPayment($intended_method_of_payment)
     {
-        $this->container['encoding'] = $encoding;
+        $this->container['intended_method_of_payment'] = $intended_method_of_payment;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecCustoms
+ * DeliveryReferences
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecCustoms Class Doc Comment
+ * DeliveryReferences Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecCustoms implements ModelInterface, ArrayAccess
+class DeliveryReferences implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_customs';
+    protected static $swaggerModelName = 'delivery-references';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'currency' => 'string',
-        'conversion_from_cad' => 'float',
-        'reason_for_export' => 'string',
-        'sku_list' => '\CanadaPost\Model\Item[]'
+        'customer_ref_1' => 'string',
+        'customer_ref_2' => 'string'
     ];
 
     /**
@@ -69,10 +67,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'currency' => null,
-        'conversion_from_cad' => null,
-        'reason_for_export' => null,
-        'sku_list' => null
+        'customer_ref_1' => null,
+        'customer_ref_2' => null
     ];
 
     /**
@@ -102,10 +98,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'conversion_from_cad' => 'conversion-from-cad',
-        'reason_for_export' => 'reason-for-export',
-        'sku_list' => 'sku-list'
+        'customer_ref_1' => 'customer-ref-1',
+        'customer_ref_2' => 'customer-ref-2'
     ];
 
     /**
@@ -114,10 +108,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'conversion_from_cad' => 'setConversionFromCad',
-        'reason_for_export' => 'setReasonForExport',
-        'sku_list' => 'setSkuList'
+        'customer_ref_1' => 'setCustomerRef1',
+        'customer_ref_2' => 'setCustomerRef2'
     ];
 
     /**
@@ -126,10 +118,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'conversion_from_cad' => 'getConversionFromCad',
-        'reason_for_export' => 'getReasonForExport',
-        'sku_list' => 'getSkuList'
+        'customer_ref_1' => 'getCustomerRef1',
+        'customer_ref_2' => 'getCustomerRef2'
     ];
 
     /**
@@ -192,10 +182,8 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['conversion_from_cad'] = isset($data['conversion_from_cad']) ? $data['conversion_from_cad'] : null;
-        $this->container['reason_for_export'] = isset($data['reason_for_export']) ? $data['reason_for_export'] : null;
-        $this->container['sku_list'] = isset($data['sku_list']) ? $data['sku_list'] : null;
+        $this->container['customer_ref_1'] = isset($data['customer_ref_1']) ? $data['customer_ref_1'] : null;
+        $this->container['customer_ref_2'] = isset($data['customer_ref_2']) ? $data['customer_ref_2'] : null;
     }
 
     /**
@@ -224,97 +212,49 @@ class DeliveryspecCustoms implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets currency
+     * Gets customer_ref_1
      *
      * @return string
      */
-    public function getCurrency()
+    public function getCustomerRef1()
     {
-        return $this->container['currency'];
+        return $this->container['customer_ref_1'];
     }
 
     /**
-     * Sets currency
+     * Sets customer_ref_1
      *
-     * @param string $currency currency
+     * @param string $customer_ref_1 customer_ref_1
      *
      * @return $this
      */
-    public function setCurrency($currency)
+    public function setCustomerRef1($customer_ref_1)
     {
-        $this->container['currency'] = $currency;
+        $this->container['customer_ref_1'] = $customer_ref_1;
 
         return $this;
     }
 
     /**
-     * Gets conversion_from_cad
-     *
-     * @return float
-     */
-    public function getConversionFromCad()
-    {
-        return $this->container['conversion_from_cad'];
-    }
-
-    /**
-     * Sets conversion_from_cad
-     *
-     * @param float $conversion_from_cad conversion rate from Canadian dollar to sales currency
-     *
-     * @return $this
-     */
-    public function setConversionFromCad($conversion_from_cad)
-    {
-        $this->container['conversion_from_cad'] = $conversion_from_cad;
-
-        return $this;
-    }
-
-    /**
-     * Gets reason_for_export
+     * Gets customer_ref_2
      *
      * @return string
      */
-    public function getReasonForExport()
+    public function getCustomerRef2()
     {
-        return $this->container['reason_for_export'];
+        return $this->container['customer_ref_2'];
     }
 
     /**
-     * Sets reason_for_export
+     * Sets customer_ref_2
      *
-     * @param string $reason_for_export SOG
+     * @param string $customer_ref_2 customer_ref_2
      *
      * @return $this
      */
-    public function setReasonForExport($reason_for_export)
+    public function setCustomerRef2($customer_ref_2)
     {
-        $this->container['reason_for_export'] = $reason_for_export;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku_list
-     *
-     * @return \CanadaPost\Model\Item[]
-     */
-    public function getSkuList()
-    {
-        return $this->container['sku_list'];
-    }
-
-    /**
-     * Sets sku_list
-     *
-     * @param \CanadaPost\Model\Item[] $sku_list sku_list
-     *
-     * @return $this
-     */
-    public function setSkuList($sku_list)
-    {
-        $this->container['sku_list'] = $sku_list;
+        $this->container['customer_ref_2'] = $customer_ref_2;
 
         return $this;
     }

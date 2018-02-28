@@ -1,4 +1,4 @@
-# DeliveryspecSettlementinfo
+# DeliverySettlementInfo
 
 ## Properties
 Name | Type | Description | Notes

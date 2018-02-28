@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecDestination
+ * DeliveryPreferences
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecDestination Class Doc Comment
+ * DeliveryPreferences Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecDestination implements ModelInterface, ArrayAccess
+class DeliveryPreferences implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_destination';
+    protected static $swaggerModelName = 'delivery-preferences';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'company' => 'string',
-        'additional_address_info' => 'string',
-        'client_voice_number' => 'string',
-        'address_details' => '\CanadaPost\Model\AddressDetails'
+        'show_packing_instructions' => 'bool',
+        'show_postage_rate' => 'bool',
+        'show_insured_value' => 'bool'
     ];
 
     /**
@@ -70,11 +68,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'company' => null,
-        'additional_address_info' => null,
-        'client_voice_number' => null,
-        'address_details' => null
+        'show_packing_instructions' => null,
+        'show_postage_rate' => null,
+        'show_insured_value' => null
     ];
 
     /**
@@ -104,11 +100,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'company' => 'company',
-        'additional_address_info' => 'additional-address-info',
-        'client_voice_number' => 'client-voice-number',
-        'address_details' => 'address-details'
+        'show_packing_instructions' => 'show-packing-instructions',
+        'show_postage_rate' => 'show-postage-rate',
+        'show_insured_value' => 'show-insured-value'
     ];
 
     /**
@@ -117,11 +111,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'company' => 'setCompany',
-        'additional_address_info' => 'setAdditionalAddressInfo',
-        'client_voice_number' => 'setClientVoiceNumber',
-        'address_details' => 'setAddressDetails'
+        'show_packing_instructions' => 'setShowPackingInstructions',
+        'show_postage_rate' => 'setShowPostageRate',
+        'show_insured_value' => 'setShowInsuredValue'
     ];
 
     /**
@@ -130,11 +122,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'company' => 'getCompany',
-        'additional_address_info' => 'getAdditionalAddressInfo',
-        'client_voice_number' => 'getClientVoiceNumber',
-        'address_details' => 'getAddressDetails'
+        'show_packing_instructions' => 'getShowPackingInstructions',
+        'show_postage_rate' => 'getShowPostageRate',
+        'show_insured_value' => 'getShowInsuredValue'
     ];
 
     /**
@@ -197,11 +187,9 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
-        $this->container['additional_address_info'] = isset($data['additional_address_info']) ? $data['additional_address_info'] : null;
-        $this->container['client_voice_number'] = isset($data['client_voice_number']) ? $data['client_voice_number'] : null;
-        $this->container['address_details'] = isset($data['address_details']) ? $data['address_details'] : null;
+        $this->container['show_packing_instructions'] = isset($data['show_packing_instructions']) ? $data['show_packing_instructions'] : null;
+        $this->container['show_postage_rate'] = isset($data['show_postage_rate']) ? $data['show_postage_rate'] : null;
+        $this->container['show_insured_value'] = isset($data['show_insured_value']) ? $data['show_insured_value'] : null;
     }
 
     /**
@@ -230,121 +218,73 @@ class DeliveryspecDestination implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets show_packing_instructions
      *
-     * @return string
+     * @return bool
      */
-    public function getName()
+    public function getShowPackingInstructions()
     {
-        return $this->container['name'];
+        return $this->container['show_packing_instructions'];
     }
 
     /**
-     * Sets name
+     * Sets show_packing_instructions
      *
-     * @param string $name name
+     * @param bool $show_packing_instructions show_packing_instructions
      *
      * @return $this
      */
-    public function setName($name)
+    public function setShowPackingInstructions($show_packing_instructions)
     {
-        $this->container['name'] = $name;
+        $this->container['show_packing_instructions'] = $show_packing_instructions;
 
         return $this;
     }
 
     /**
-     * Gets company
+     * Gets show_postage_rate
      *
-     * @return string
+     * @return bool
      */
-    public function getCompany()
+    public function getShowPostageRate()
     {
-        return $this->container['company'];
+        return $this->container['show_postage_rate'];
     }
 
     /**
-     * Sets company
+     * Sets show_postage_rate
      *
-     * @param string $company company
+     * @param bool $show_postage_rate mandatory for international shipping
      *
      * @return $this
      */
-    public function setCompany($company)
+    public function setShowPostageRate($show_postage_rate)
     {
-        $this->container['company'] = $company;
+        $this->container['show_postage_rate'] = $show_postage_rate;
 
         return $this;
     }
 
     /**
-     * Gets additional_address_info
+     * Gets show_insured_value
      *
-     * @return string
+     * @return bool
      */
-    public function getAdditionalAddressInfo()
+    public function getShowInsuredValue()
     {
-        return $this->container['additional_address_info'];
+        return $this->container['show_insured_value'];
     }
 
     /**
-     * Sets additional_address_info
+     * Sets show_insured_value
      *
-     * @param string $additional_address_info additional_address_info
+     * @param bool $show_insured_value mandatory for international insured shipping
      *
      * @return $this
      */
-    public function setAdditionalAddressInfo($additional_address_info)
+    public function setShowInsuredValue($show_insured_value)
     {
-        $this->container['additional_address_info'] = $additional_address_info;
-
-        return $this;
-    }
-
-    /**
-     * Gets client_voice_number
-     *
-     * @return string
-     */
-    public function getClientVoiceNumber()
-    {
-        return $this->container['client_voice_number'];
-    }
-
-    /**
-     * Sets client_voice_number
-     *
-     * @param string $client_voice_number client_voice_number
-     *
-     * @return $this
-     */
-    public function setClientVoiceNumber($client_voice_number)
-    {
-        $this->container['client_voice_number'] = $client_voice_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets address_details
-     *
-     * @return \CanadaPost\Model\AddressDetails
-     */
-    public function getAddressDetails()
-    {
-        return $this->container['address_details'];
-    }
-
-    /**
-     * Sets address_details
-     *
-     * @param \CanadaPost\Model\AddressDetails $address_details address_details
-     *
-     * @return $this
-     */
-    public function setAddressDetails($address_details)
-    {
-        $this->container['address_details'] = $address_details;
+        $this->container['show_insured_value'] = $show_insured_value;
 
         return $this;
     }

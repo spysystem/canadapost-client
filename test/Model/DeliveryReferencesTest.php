@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecParcelcharacteristicsTest
+ * DeliveryReferencesTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace CanadaPost;
 
 /**
- * DeliveryspecParcelcharacteristicsTest Class Doc Comment
+ * DeliveryReferencesTest Class Doc Comment
  *
  * @category    Class
- * @description DeliveryspecParcelcharacteristics
+ * @description DeliveryReferences
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecParcelcharacteristicsTest extends \PHPUnit_Framework_TestCase
+class DeliveryReferencesTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,16 +70,23 @@ class DeliveryspecParcelcharacteristicsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "DeliveryspecParcelcharacteristics"
+     * Test "DeliveryReferences"
      */
-    public function testDeliveryspecParcelcharacteristics()
+    public function testDeliveryReferences()
     {
     }
 
     /**
-     * Test attribute "weight"
+     * Test attribute "customer_ref_1"
      */
-    public function testPropertyWeight()
+    public function testPropertyCustomerRef1()
+    {
+    }
+
+    /**
+     * Test attribute "customer_ref_2"
+     */
+    public function testPropertyCustomerRef2()
     {
     }
 }

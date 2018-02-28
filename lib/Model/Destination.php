@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecSettlementinfo
+ * Destination
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecSettlementinfo Class Doc Comment
+ * Destination Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
+class Destination implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_settlementinfo';
+    protected static $swaggerModelName = 'destination';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'contract_id' => 'string',
-        'intended_method_of_payment' => 'string'
+        'name' => 'string',
+        'company' => 'string',
+        'additional_address_info' => 'string',
+        'client_voice_number' => 'string',
+        'address_details' => '\CanadaPost\Model\AddressDetails'
     ];
 
     /**
@@ -67,8 +70,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'contract_id' => null,
-        'intended_method_of_payment' => null
+        'name' => null,
+        'company' => null,
+        'additional_address_info' => null,
+        'client_voice_number' => null,
+        'address_details' => null
     ];
 
     /**
@@ -98,8 +104,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'contract_id' => 'contract-id',
-        'intended_method_of_payment' => 'intended-method-of-payment'
+        'name' => 'name',
+        'company' => 'company',
+        'additional_address_info' => 'additional-address-info',
+        'client_voice_number' => 'client-voice-number',
+        'address_details' => 'address-details'
     ];
 
     /**
@@ -108,8 +117,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'contract_id' => 'setContractId',
-        'intended_method_of_payment' => 'setIntendedMethodOfPayment'
+        'name' => 'setName',
+        'company' => 'setCompany',
+        'additional_address_info' => 'setAdditionalAddressInfo',
+        'client_voice_number' => 'setClientVoiceNumber',
+        'address_details' => 'setAddressDetails'
     ];
 
     /**
@@ -118,8 +130,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'contract_id' => 'getContractId',
-        'intended_method_of_payment' => 'getIntendedMethodOfPayment'
+        'name' => 'getName',
+        'company' => 'getCompany',
+        'additional_address_info' => 'getAdditionalAddressInfo',
+        'client_voice_number' => 'getClientVoiceNumber',
+        'address_details' => 'getAddressDetails'
     ];
 
     /**
@@ -182,8 +197,11 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['contract_id'] = isset($data['contract_id']) ? $data['contract_id'] : null;
-        $this->container['intended_method_of_payment'] = isset($data['intended_method_of_payment']) ? $data['intended_method_of_payment'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
+        $this->container['additional_address_info'] = isset($data['additional_address_info']) ? $data['additional_address_info'] : null;
+        $this->container['client_voice_number'] = isset($data['client_voice_number']) ? $data['client_voice_number'] : null;
+        $this->container['address_details'] = isset($data['address_details']) ? $data['address_details'] : null;
     }
 
     /**
@@ -212,49 +230,121 @@ class DeliveryspecSettlementinfo implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets contract_id
+     * Gets name
      *
      * @return string
      */
-    public function getContractId()
+    public function getName()
     {
-        return $this->container['contract_id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets contract_id
+     * Sets name
      *
-     * @param string $contract_id contract_id
+     * @param string $name name
      *
      * @return $this
      */
-    public function setContractId($contract_id)
+    public function setName($name)
     {
-        $this->container['contract_id'] = $contract_id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets intended_method_of_payment
+     * Gets company
      *
      * @return string
      */
-    public function getIntendedMethodOfPayment()
+    public function getCompany()
     {
-        return $this->container['intended_method_of_payment'];
+        return $this->container['company'];
     }
 
     /**
-     * Sets intended_method_of_payment
+     * Sets company
      *
-     * @param string $intended_method_of_payment Account
+     * @param string $company company
      *
      * @return $this
      */
-    public function setIntendedMethodOfPayment($intended_method_of_payment)
+    public function setCompany($company)
     {
-        $this->container['intended_method_of_payment'] = $intended_method_of_payment;
+        $this->container['company'] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_address_info
+     *
+     * @return string
+     */
+    public function getAdditionalAddressInfo()
+    {
+        return $this->container['additional_address_info'];
+    }
+
+    /**
+     * Sets additional_address_info
+     *
+     * @param string $additional_address_info additional_address_info
+     *
+     * @return $this
+     */
+    public function setAdditionalAddressInfo($additional_address_info)
+    {
+        $this->container['additional_address_info'] = $additional_address_info;
+
+        return $this;
+    }
+
+    /**
+     * Gets client_voice_number
+     *
+     * @return string
+     */
+    public function getClientVoiceNumber()
+    {
+        return $this->container['client_voice_number'];
+    }
+
+    /**
+     * Sets client_voice_number
+     *
+     * @param string $client_voice_number client_voice_number
+     *
+     * @return $this
+     */
+    public function setClientVoiceNumber($client_voice_number)
+    {
+        $this->container['client_voice_number'] = $client_voice_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets address_details
+     *
+     * @return \CanadaPost\Model\AddressDetails
+     */
+    public function getAddressDetails()
+    {
+        return $this->container['address_details'];
+    }
+
+    /**
+     * Sets address_details
+     *
+     * @param \CanadaPost\Model\AddressDetails $address_details address_details
+     *
+     * @return $this
+     */
+    public function setAddressDetails($address_details)
+    {
+        $this->container['address_details'] = $address_details;
 
         return $this;
     }

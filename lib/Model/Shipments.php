@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecSender
+ * Shipments
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecSender Class Doc Comment
+ * Shipments Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecSender implements ModelInterface, ArrayAccess
+class Shipments implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_sender';
+    protected static $swaggerModelName = 'shipments';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'company' => 'string',
-        'contact_phone' => 'string',
-        'address_details' => '\CanadaPost\Model\AddressDetails'
+        
     ];
 
     /**
@@ -69,10 +66,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'company' => null,
-        'contact_phone' => null,
-        'address_details' => null
+        
     ];
 
     /**
@@ -102,10 +96,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'company' => 'company',
-        'contact_phone' => 'contact-phone',
-        'address_details' => 'address-details'
+        
     ];
 
     /**
@@ -114,10 +105,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'company' => 'setCompany',
-        'contact_phone' => 'setContactPhone',
-        'address_details' => 'setAddressDetails'
+        
     ];
 
     /**
@@ -126,10 +114,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'company' => 'getCompany',
-        'contact_phone' => 'getContactPhone',
-        'address_details' => 'getAddressDetails'
+        
     ];
 
     /**
@@ -192,10 +177,6 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['company'] = isset($data['company']) ? $data['company'] : null;
-        $this->container['contact_phone'] = isset($data['contact_phone']) ? $data['contact_phone'] : null;
-        $this->container['address_details'] = isset($data['address_details']) ? $data['address_details'] : null;
     }
 
     /**
@@ -205,7 +186,7 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -218,106 +199,13 @@ class DeliveryspecSender implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
+        if (!parent::valid()) {
+            return false;
+        }
 
         return true;
     }
 
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets company
-     *
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->container['company'];
-    }
-
-    /**
-     * Sets company
-     *
-     * @param string $company company
-     *
-     * @return $this
-     */
-    public function setCompany($company)
-    {
-        $this->container['company'] = $company;
-
-        return $this;
-    }
-
-    /**
-     * Gets contact_phone
-     *
-     * @return string
-     */
-    public function getContactPhone()
-    {
-        return $this->container['contact_phone'];
-    }
-
-    /**
-     * Sets contact_phone
-     *
-     * @param string $contact_phone contact_phone
-     *
-     * @return $this
-     */
-    public function setContactPhone($contact_phone)
-    {
-        $this->container['contact_phone'] = $contact_phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets address_details
-     *
-     * @return \CanadaPost\Model\AddressDetails
-     */
-    public function getAddressDetails()
-    {
-        return $this->container['address_details'];
-    }
-
-    /**
-     * Sets address_details
-     *
-     * @param \CanadaPost\Model\AddressDetails $address_details address_details
-     *
-     * @return $this
-     */
-    public function setAddressDetails($address_details)
-    {
-        $this->container['address_details'] = $address_details;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

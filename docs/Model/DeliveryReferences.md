@@ -1,4 +1,4 @@
-# DeliveryspecReferences
+# DeliveryReferences
 
 ## Properties
 Name | Type | Description | Notes

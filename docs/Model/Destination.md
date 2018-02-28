@@ -1,4 +1,4 @@
-# DeliveryspecDestination
+# Destination
 
 ## Properties
 Name | Type | Description | Notes

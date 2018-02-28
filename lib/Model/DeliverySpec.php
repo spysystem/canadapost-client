@@ -58,14 +58,14 @@ class DeliverySpec implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'service_code' => 'string',
-        'sender' => '\CanadaPost\Model\DeliveryspecSender',
-        'destination' => '\CanadaPost\Model\DeliveryspecDestination',
-        'parcel_characteristics' => '\CanadaPost\Model\DeliveryspecParcelcharacteristics',
-        'print_preferences' => '\CanadaPost\Model\DeliveryspecPrintpreferences',
-        'preferences' => '\CanadaPost\Model\DeliveryspecPreferences',
-        'references' => '\CanadaPost\Model\DeliveryspecReferences',
-        'customs' => '\CanadaPost\Model\DeliveryspecCustoms',
-        'settlement_info' => '\CanadaPost\Model\DeliveryspecSettlementinfo'
+        'sender' => '\CanadaPost\Model\Sender',
+        'destination' => '\CanadaPost\Model\Destination',
+        'parcel_characteristics' => '\CanadaPost\Model\DeliveryParcelCharacteristics',
+        'print_preferences' => '\CanadaPost\Model\DeliveryPrintPreferences',
+        'preferences' => '\CanadaPost\Model\DeliveryPreferences',
+        'references' => '\CanadaPost\Model\DeliveryReferences',
+        'customs' => '\CanadaPost\Model\DeliveryCustoms',
+        'settlement_info' => '\CanadaPost\Model\DeliverySettlementInfo'
     ];
 
     /**
@@ -280,7 +280,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets sender
      *
-     * @return \CanadaPost\Model\DeliveryspecSender
+     * @return \CanadaPost\Model\Sender
      */
     public function getSender()
     {
@@ -290,7 +290,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets sender
      *
-     * @param \CanadaPost\Model\DeliveryspecSender $sender sender
+     * @param \CanadaPost\Model\Sender $sender sender
      *
      * @return $this
      */
@@ -304,7 +304,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets destination
      *
-     * @return \CanadaPost\Model\DeliveryspecDestination
+     * @return \CanadaPost\Model\Destination
      */
     public function getDestination()
     {
@@ -314,7 +314,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets destination
      *
-     * @param \CanadaPost\Model\DeliveryspecDestination $destination destination
+     * @param \CanadaPost\Model\Destination $destination destination
      *
      * @return $this
      */
@@ -328,7 +328,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets parcel_characteristics
      *
-     * @return \CanadaPost\Model\DeliveryspecParcelcharacteristics
+     * @return \CanadaPost\Model\DeliveryParcelCharacteristics
      */
     public function getParcelCharacteristics()
     {
@@ -338,7 +338,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets parcel_characteristics
      *
-     * @param \CanadaPost\Model\DeliveryspecParcelcharacteristics $parcel_characteristics parcel_characteristics
+     * @param \CanadaPost\Model\DeliveryParcelCharacteristics $parcel_characteristics parcel_characteristics
      *
      * @return $this
      */
@@ -352,7 +352,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets print_preferences
      *
-     * @return \CanadaPost\Model\DeliveryspecPrintpreferences
+     * @return \CanadaPost\Model\DeliveryPrintPreferences
      */
     public function getPrintPreferences()
     {
@@ -362,7 +362,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets print_preferences
      *
-     * @param \CanadaPost\Model\DeliveryspecPrintpreferences $print_preferences print_preferences
+     * @param \CanadaPost\Model\DeliveryPrintPreferences $print_preferences print_preferences
      *
      * @return $this
      */
@@ -376,7 +376,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets preferences
      *
-     * @return \CanadaPost\Model\DeliveryspecPreferences
+     * @return \CanadaPost\Model\DeliveryPreferences
      */
     public function getPreferences()
     {
@@ -386,7 +386,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets preferences
      *
-     * @param \CanadaPost\Model\DeliveryspecPreferences $preferences preferences
+     * @param \CanadaPost\Model\DeliveryPreferences $preferences preferences
      *
      * @return $this
      */
@@ -400,7 +400,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets references
      *
-     * @return \CanadaPost\Model\DeliveryspecReferences
+     * @return \CanadaPost\Model\DeliveryReferences
      */
     public function getReferences()
     {
@@ -410,7 +410,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets references
      *
-     * @param \CanadaPost\Model\DeliveryspecReferences $references references
+     * @param \CanadaPost\Model\DeliveryReferences $references references
      *
      * @return $this
      */
@@ -424,7 +424,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets customs
      *
-     * @return \CanadaPost\Model\DeliveryspecCustoms
+     * @return \CanadaPost\Model\DeliveryCustoms
      */
     public function getCustoms()
     {
@@ -434,7 +434,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets customs
      *
-     * @param \CanadaPost\Model\DeliveryspecCustoms $customs customs
+     * @param \CanadaPost\Model\DeliveryCustoms $customs customs
      *
      * @return $this
      */
@@ -448,7 +448,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Gets settlement_info
      *
-     * @return \CanadaPost\Model\DeliveryspecSettlementinfo
+     * @return \CanadaPost\Model\DeliverySettlementInfo
      */
     public function getSettlementInfo()
     {
@@ -458,7 +458,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
     /**
      * Sets settlement_info
      *
-     * @param \CanadaPost\Model\DeliveryspecSettlementinfo $settlement_info settlement_info
+     * @param \CanadaPost\Model\DeliverySettlementInfo $settlement_info settlement_info
      *
      * @return $this
      */

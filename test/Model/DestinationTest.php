@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecPreferencesTest
+ * DestinationTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace CanadaPost;
 
 /**
- * DeliveryspecPreferencesTest Class Doc Comment
+ * DestinationTest Class Doc Comment
  *
  * @category    Class
- * @description DeliveryspecPreferences
+ * @description Destination
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecPreferencesTest extends \PHPUnit_Framework_TestCase
+class DestinationTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,30 +70,44 @@ class DeliveryspecPreferencesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "DeliveryspecPreferences"
+     * Test "Destination"
      */
-    public function testDeliveryspecPreferences()
+    public function testDestination()
     {
     }
 
     /**
-     * Test attribute "show_packing_instructions"
+     * Test attribute "name"
      */
-    public function testPropertyShowPackingInstructions()
+    public function testPropertyName()
     {
     }
 
     /**
-     * Test attribute "show_postage_rate"
+     * Test attribute "company"
      */
-    public function testPropertyShowPostageRate()
+    public function testPropertyCompany()
     {
     }
 
     /**
-     * Test attribute "show_insured_value"
+     * Test attribute "additional_address_info"
      */
-    public function testPropertyShowInsuredValue()
+    public function testPropertyAdditionalAddressInfo()
+    {
+    }
+
+    /**
+     * Test attribute "client_voice_number"
+     */
+    public function testPropertyClientVoiceNumber()
+    {
+    }
+
+    /**
+     * Test attribute "address_details"
+     */
+    public function testPropertyAddressDetails()
     {
     }
 }

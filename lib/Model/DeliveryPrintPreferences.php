@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecReferences
+ * DeliveryPrintPreferences
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecReferences Class Doc Comment
+ * DeliveryPrintPreferences Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecReferences implements ModelInterface, ArrayAccess
+class DeliveryPrintPreferences implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_references';
+    protected static $swaggerModelName = 'delivery-print-preferences';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'customer_ref_1' => 'string',
-        'customer_ref_2' => 'string'
+        'output_format' => 'string',
+        'encoding' => 'string'
     ];
 
     /**
@@ -67,8 +67,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'customer_ref_1' => null,
-        'customer_ref_2' => null
+        'output_format' => null,
+        'encoding' => null
     ];
 
     /**
@@ -98,8 +98,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'customer_ref_1' => 'customer-ref-1',
-        'customer_ref_2' => 'customer-ref-2'
+        'output_format' => 'output-format',
+        'encoding' => 'encoding'
     ];
 
     /**
@@ -108,8 +108,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'customer_ref_1' => 'setCustomerRef1',
-        'customer_ref_2' => 'setCustomerRef2'
+        'output_format' => 'setOutputFormat',
+        'encoding' => 'setEncoding'
     ];
 
     /**
@@ -118,8 +118,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'customer_ref_1' => 'getCustomerRef1',
-        'customer_ref_2' => 'getCustomerRef2'
+        'output_format' => 'getOutputFormat',
+        'encoding' => 'getEncoding'
     ];
 
     /**
@@ -182,8 +182,8 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['customer_ref_1'] = isset($data['customer_ref_1']) ? $data['customer_ref_1'] : null;
-        $this->container['customer_ref_2'] = isset($data['customer_ref_2']) ? $data['customer_ref_2'] : null;
+        $this->container['output_format'] = isset($data['output_format']) ? $data['output_format'] : null;
+        $this->container['encoding'] = isset($data['encoding']) ? $data['encoding'] : null;
     }
 
     /**
@@ -212,49 +212,49 @@ class DeliveryspecReferences implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets customer_ref_1
+     * Gets output_format
      *
      * @return string
      */
-    public function getCustomerRef1()
+    public function getOutputFormat()
     {
-        return $this->container['customer_ref_1'];
+        return $this->container['output_format'];
     }
 
     /**
-     * Sets customer_ref_1
+     * Sets output_format
      *
-     * @param string $customer_ref_1 customer_ref_1
+     * @param string $output_format 8.5x11
      *
      * @return $this
      */
-    public function setCustomerRef1($customer_ref_1)
+    public function setOutputFormat($output_format)
     {
-        $this->container['customer_ref_1'] = $customer_ref_1;
+        $this->container['output_format'] = $output_format;
 
         return $this;
     }
 
     /**
-     * Gets customer_ref_2
+     * Gets encoding
      *
      * @return string
      */
-    public function getCustomerRef2()
+    public function getEncoding()
     {
-        return $this->container['customer_ref_2'];
+        return $this->container['encoding'];
     }
 
     /**
-     * Sets customer_ref_2
+     * Sets encoding
      *
-     * @param string $customer_ref_2 customer_ref_2
+     * @param string $encoding PDF
      *
      * @return $this
      */
-    public function setCustomerRef2($customer_ref_2)
+    public function setEncoding($encoding)
     {
-        $this->container['customer_ref_2'] = $customer_ref_2;
+        $this->container['encoding'] = $encoding;
 
         return $this;
     }

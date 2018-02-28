@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecPreferences
+ * DeliveryParcelCharacteristics
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * DeliveryspecPreferences Class Doc Comment
+ * DeliveryParcelCharacteristics Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecPreferences implements ModelInterface, ArrayAccess
+class DeliveryParcelCharacteristics implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'deliveryspec_preferences';
+    protected static $swaggerModelName = 'delivery-parcel-characteristics';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'show_packing_instructions' => 'bool',
-        'show_postage_rate' => 'bool',
-        'show_insured_value' => 'bool'
+        'weight' => 'float'
     ];
 
     /**
@@ -68,9 +66,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'show_packing_instructions' => null,
-        'show_postage_rate' => null,
-        'show_insured_value' => null
+        'weight' => null
     ];
 
     /**
@@ -100,9 +96,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'show_packing_instructions' => 'show-packing-instructions',
-        'show_postage_rate' => 'show-postage-rate',
-        'show_insured_value' => 'show-insured-value'
+        'weight' => 'weight'
     ];
 
     /**
@@ -111,9 +105,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'show_packing_instructions' => 'setShowPackingInstructions',
-        'show_postage_rate' => 'setShowPostageRate',
-        'show_insured_value' => 'setShowInsuredValue'
+        'weight' => 'setWeight'
     ];
 
     /**
@@ -122,9 +114,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'show_packing_instructions' => 'getShowPackingInstructions',
-        'show_postage_rate' => 'getShowPostageRate',
-        'show_insured_value' => 'getShowInsuredValue'
+        'weight' => 'getWeight'
     ];
 
     /**
@@ -187,9 +177,7 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['show_packing_instructions'] = isset($data['show_packing_instructions']) ? $data['show_packing_instructions'] : null;
-        $this->container['show_postage_rate'] = isset($data['show_postage_rate']) ? $data['show_postage_rate'] : null;
-        $this->container['show_insured_value'] = isset($data['show_insured_value']) ? $data['show_insured_value'] : null;
+        $this->container['weight'] = isset($data['weight']) ? $data['weight'] : null;
     }
 
     /**
@@ -218,73 +206,25 @@ class DeliveryspecPreferences implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets show_packing_instructions
+     * Gets weight
      *
-     * @return bool
+     * @return float
      */
-    public function getShowPackingInstructions()
+    public function getWeight()
     {
-        return $this->container['show_packing_instructions'];
+        return $this->container['weight'];
     }
 
     /**
-     * Sets show_packing_instructions
+     * Sets weight
      *
-     * @param bool $show_packing_instructions show_packing_instructions
+     * @param float $weight in kg. pattern =
      *
      * @return $this
      */
-    public function setShowPackingInstructions($show_packing_instructions)
+    public function setWeight($weight)
     {
-        $this->container['show_packing_instructions'] = $show_packing_instructions;
-
-        return $this;
-    }
-
-    /**
-     * Gets show_postage_rate
-     *
-     * @return bool
-     */
-    public function getShowPostageRate()
-    {
-        return $this->container['show_postage_rate'];
-    }
-
-    /**
-     * Sets show_postage_rate
-     *
-     * @param bool $show_postage_rate mandatory for international shipping
-     *
-     * @return $this
-     */
-    public function setShowPostageRate($show_postage_rate)
-    {
-        $this->container['show_postage_rate'] = $show_postage_rate;
-
-        return $this;
-    }
-
-    /**
-     * Gets show_insured_value
-     *
-     * @return bool
-     */
-    public function getShowInsuredValue()
-    {
-        return $this->container['show_insured_value'];
-    }
-
-    /**
-     * Sets show_insured_value
-     *
-     * @param bool $show_insured_value mandatory for international insured shipping
-     *
-     * @return $this
-     */
-    public function setShowInsuredValue($show_insured_value)
-    {
-        $this->container['show_insured_value'] = $show_insured_value;
+        $this->container['weight'] = $weight;
 
         return $this;
     }

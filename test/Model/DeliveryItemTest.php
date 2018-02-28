@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecReferencesTest
+ * DeliveryItemTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace CanadaPost;
 
 /**
- * DeliveryspecReferencesTest Class Doc Comment
+ * DeliveryItemTest Class Doc Comment
  *
  * @category    Class
- * @description DeliveryspecReferences
+ * @description DeliveryItem
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecReferencesTest extends \PHPUnit_Framework_TestCase
+class DeliveryItemTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,23 +70,65 @@ class DeliveryspecReferencesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "DeliveryspecReferences"
+     * Test "DeliveryItem"
      */
-    public function testDeliveryspecReferences()
+    public function testDeliveryItem()
     {
     }
 
     /**
-     * Test attribute "customer_ref_1"
+     * Test attribute "customs_number_of_units"
      */
-    public function testPropertyCustomerRef1()
+    public function testPropertyCustomsNumberOfUnits()
     {
     }
 
     /**
-     * Test attribute "customer_ref_2"
+     * Test attribute "customs_unit_of_measure"
      */
-    public function testPropertyCustomerRef2()
+    public function testPropertyCustomsUnitOfMeasure()
+    {
+    }
+
+    /**
+     * Test attribute "customs_description"
+     */
+    public function testPropertyCustomsDescription()
+    {
+    }
+
+    /**
+     * Test attribute "sku"
+     */
+    public function testPropertySku()
+    {
+    }
+
+    /**
+     * Test attribute "hs_tariff_code"
+     */
+    public function testPropertyHsTariffCode()
+    {
+    }
+
+    /**
+     * Test attribute "unit_weight"
+     */
+    public function testPropertyUnitWeight()
+    {
+    }
+
+    /**
+     * Test attribute "customs_value_per_unit"
+     */
+    public function testPropertyCustomsValuePerUnit()
+    {
+    }
+
+    /**
+     * Test attribute "country_of_origin"
+     */
+    public function testPropertyCountryOfOrigin()
     {
     }
 }

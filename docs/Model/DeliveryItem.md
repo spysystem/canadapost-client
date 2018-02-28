@@ -1,4 +1,4 @@
-# Item
+# DeliveryItem
 
 ## Properties
 Name | Type | Description | Notes

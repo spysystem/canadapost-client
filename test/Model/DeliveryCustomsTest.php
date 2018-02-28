@@ -1,6 +1,6 @@
 <?php
 /**
- * DeliveryspecPrintpreferencesTest
+ * DeliveryCustomsTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace CanadaPost;
 
 /**
- * DeliveryspecPrintpreferencesTest Class Doc Comment
+ * DeliveryCustomsTest Class Doc Comment
  *
  * @category    Class
- * @description DeliveryspecPrintpreferences
+ * @description DeliveryCustoms
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class DeliveryspecPrintpreferencesTest extends \PHPUnit_Framework_TestCase
+class DeliveryCustomsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,23 +70,37 @@ class DeliveryspecPrintpreferencesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "DeliveryspecPrintpreferences"
+     * Test "DeliveryCustoms"
      */
-    public function testDeliveryspecPrintpreferences()
+    public function testDeliveryCustoms()
     {
     }
 
     /**
-     * Test attribute "output_format"
+     * Test attribute "currency"
      */
-    public function testPropertyOutputFormat()
+    public function testPropertyCurrency()
     {
     }
 
     /**
-     * Test attribute "encoding"
+     * Test attribute "conversion_from_cad"
      */
-    public function testPropertyEncoding()
+    public function testPropertyConversionFromCad()
+    {
+    }
+
+    /**
+     * Test attribute "reason_for_export"
+     */
+    public function testPropertyReasonForExport()
+    {
+    }
+
+    /**
+     * Test attribute "sku_list"
+     */
+    public function testPropertySkuList()
     {
     }
 }

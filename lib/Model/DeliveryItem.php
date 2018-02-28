@@ -1,6 +1,6 @@
 <?php
 /**
- * Item
+ * DeliveryItem
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * Item Class Doc Comment
+ * DeliveryItem Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Item implements ModelInterface, ArrayAccess
+class DeliveryItem implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Item implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'item';
+    protected static $swaggerModelName = 'delivery-item';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

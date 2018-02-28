@@ -1,6 +1,6 @@
 <?php
 /**
- * ItemTest
+ * DeliveryPrintPreferencesTest
  *
  * PHP version 5
  *
@@ -30,15 +30,15 @@
 namespace CanadaPost;
 
 /**
- * ItemTest Class Doc Comment
+ * DeliveryPrintPreferencesTest Class Doc Comment
  *
  * @category    Class
- * @description Item
+ * @description DeliveryPrintPreferences
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ItemTest extends \PHPUnit_Framework_TestCase
+class DeliveryPrintPreferencesTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -70,65 +70,23 @@ class ItemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "Item"
+     * Test "DeliveryPrintPreferences"
      */
-    public function testItem()
+    public function testDeliveryPrintPreferences()
     {
     }
 
     /**
-     * Test attribute "customs_number_of_units"
+     * Test attribute "output_format"
      */
-    public function testPropertyCustomsNumberOfUnits()
+    public function testPropertyOutputFormat()
     {
     }
 
     /**
-     * Test attribute "customs_unit_of_measure"
+     * Test attribute "encoding"
      */
-    public function testPropertyCustomsUnitOfMeasure()
-    {
-    }
-
-    /**
-     * Test attribute "customs_description"
-     */
-    public function testPropertyCustomsDescription()
-    {
-    }
-
-    /**
-     * Test attribute "sku"
-     */
-    public function testPropertySku()
-    {
-    }
-
-    /**
-     * Test attribute "hs_tariff_code"
-     */
-    public function testPropertyHsTariffCode()
-    {
-    }
-
-    /**
-     * Test attribute "unit_weight"
-     */
-    public function testPropertyUnitWeight()
-    {
-    }
-
-    /**
-     * Test attribute "customs_value_per_unit"
-     */
-    public function testPropertyCustomsValuePerUnit()
-    {
-    }
-
-    /**
-     * Test attribute "country_of_origin"
-     */
-    public function testPropertyCountryOfOrigin()
+    public function testPropertyEncoding()
     {
     }
 }

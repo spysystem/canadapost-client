@@ -202,89 +202,121 @@ definitions:
         type: string
         description: Shipment Type
       sender:
-        type: object
-        properties:
-          name:
-            type: string
-          company:
-            type: string
-          contact-phone:
-            type: string
-          address-details:
-            $ref: '#/definitions/address-details'
+        $ref: '#/definitions/sender'
       destination:
-        type: object
-        properties:
-          name:
-            type: string
-          company:
-            type: string
-          additional-address-info:
-            type: string
-          client-voice-number:
-            type: string
-          address-details:
-            $ref: '#/definitions/address-details'
+        $ref: '#/definitions/destination'
       parcel-characteristics:
-        type: object
-        properties:
-          weight:
-            type: number
-            description: in kg. pattern = ###.###
+        $ref: '#/definitions/delivery-parcel-characteristics'
       print-preferences:
-        type: object
-        properties:
-          output-format:
-            type: string
-            description: 8.5x11
-          encoding:
-            type: string
-            description: PDF
+        $ref: '#/definitions/delivery-print-preferences'
       preferences:
-        type: object
-        properties:
-          show-packing-instructions:
-            type: boolean
-          show-postage-rate:
-            type: boolean
-            description: mandatory for international shipping
-          show-insured-value:
-            type: boolean
-            description: mandatory for international insured shipping
+        $ref: '#/definitions/delivery-preferences'
       references:
-        type: object
-        properties:
-          customer-ref-1:
-            type: string
-          customer-ref-2:
-            type: string
+        $ref: '#/definitions/delivery-references'
       customs:
-        type: object
-        properties:
-          currency:
-            type: string
-          conversion-from-cad:
-            type: number
-            description: conversion rate from Canadian dollar to sales currency
-          reason-for-export:
-            type: string
-            description: SOG
-          sku-list:
-            type: array
-            items:
-              $ref: '#/definitions/item'
-            xml:
-              name: sku-list
-              wrapped: true
+        $ref: '#/definitions/delivery-customs'
       settlement-info:
-        type: object
-        properties:
-          contract-id:
-            type: string
-          intended-method-of-payment:
-            type: string
-            description: Account
-  item:
+        $ref: '#/definitions/delivery-settlement-info'
+
+  sender:
+    type: object
+    properties:
+      name:
+        type: string
+      company:
+        type: string
+      contact-phone:
+        type: string
+      address-details:
+        $ref: '#/definitions/address-details'
+
+  destination:
+    type: object
+    properties:
+      name:
+        type: string
+      company:
+        type: string
+      additional-address-info:
+        type: string
+      client-voice-number:
+        type: string
+      address-details:
+        $ref: '#/definitions/address-details'
+
+  address-details:
+    type: object
+    properties:
+      address-line1:
+        type: string
+      address-line2:
+        type: string
+      city:
+        type: string
+      prov-state:
+        type: string
+      country-code:
+        type: string
+      postal-zip-code:
+        type: string
+
+  delivery-parcel-characteristics:
+    type: object
+    properties:
+      weight:
+        type: number
+        description: in kg. pattern = ###.###
+
+  delivery-print-preferences:
+    type: object
+    properties:
+      output-format:
+        type: string
+        description: 8.5x11
+      encoding:
+        type: string
+        description: PDF
+
+  delivery-preferences:
+    type: object
+    properties:
+      show-packing-instructions:
+        type: boolean
+      show-postage-rate:
+        type: boolean
+        description: mandatory for international shipping
+      show-insured-value:
+        type: boolean
+        description: mandatory for international insured shipping
+
+  delivery-references:
+    type: object
+    properties:
+      customer-ref-1:
+        type: string
+      customer-ref-2:
+        type: string
+
+  delivery-customs:
+    type: object
+    properties:
+      currency:
+        type: string
+      conversion-from-cad:
+        type: number
+        description: conversion rate from Canadian dollar to sales currency
+      reason-for-export:
+        type: string
+        description: SOG
+      sku-list:
+        type: array
+        items:
+          $ref: '#/definitions/delivery-item'
+        xml:
+          name: sku-list
+          wrapped: true
+
+  delivery-item:
     type: object
     properties:
       customs-number-of-units:
@@ -310,23 +342,14 @@ definitions:
     xml:
       name: item
 
-  address-details:
+  delivery-settlement-info:
     type: object
     properties:
-      address-line1:
+      contract-id:
         type: string
-      address-line2:
+      intended-method-of-payment:
         type: string
-      city:
-        type: string
-      prov-state:
-        type: string
-      country-code:
-        type: string
-      postal-zip-code:
-        type: string
-    xml:
-      name: address-details
+        description: Account
 
   shipment-info:
     type: object
@@ -427,6 +450,34 @@ definitions:
         name: link
     xml:
       name: manifests
+      wrapped: true
+
+
+  shipments:
+    type: array
+    items:
+      type: object
+      properties:
+        rel:
+          type: string
+          xml:
+            attribute: true
+        href:
+          type: string
+          xml:
+            attribute: true
+        media-type:
+          type: string
+          xml:
+            attribute: true
+        index:
+          type: string
+          xml:
+            attribute: true
+      xml:
+        name: link
+    xml:
+      name: shipments
       wrapped: true
 
 schemes:
