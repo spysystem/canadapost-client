@@ -33,7 +33,7 @@ namespace CanadaPost;
  * ErrorResponseObjectInnerTest Class Doc Comment
  *
  * @category    Class
- * @description ErrorResponseObjectInner
+ * @description ErrorResponseMessage
  * @package     CanadaPost
  * @author      Swagger Codegen team
  * @link        https://github.com/swagger-api/swagger-codegen
@@ -70,7 +70,7 @@ class ErrorResponseObjectInnerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test "ErrorResponseObjectInner"
+     * Test "ErrorResponseMessage"
      */
     public function testErrorResponseObjectInner()
     {

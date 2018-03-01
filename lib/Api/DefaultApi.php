@@ -28,6 +28,9 @@
 
 namespace CanadaPost\Api;
 
+use CanadaPost\Model\ErrorResponseObject;
+use CanadaPost\Model\Manifests;
+use CanadaPost\Model\ShipmentInfo;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -38,6 +41,10 @@ use CanadaPost\ApiException;
 use CanadaPost\Configuration;
 use CanadaPost\HeaderSelector;
 use CanadaPost\ObjectSerializer;
+use InvalidArgumentException;
+use Psr\Http\Message\StreamInterface;
+use SplFileObject;
+use SpyHelper\JsonSimpleXMLElementDecorator;
 
 /**
  * DefaultApi Class Doc Comment
@@ -98,7 +105,7 @@ class DefaultApi
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
      * @throws \CanadaPost\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \CanadaPost\Model\ShipmentInfo
      */
     public function createShipment($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
@@ -106,6 +113,19 @@ class DefaultApi
         list($response) = $this->createShipmentWithHttpInfo($str_customer, $str_mobo, $accept_language, $xmlbody);
         return $response;
     }
+
+	/**
+	 * @param StreamInterface $oStream
+	 *
+	 * @return string
+	 */
+    protected static function GetJsonStringFromXMLStream(StreamInterface $oStream): string
+	{
+		$strXML		= $oStream->getContents();
+		$oXML		= simplexml_load_string($strXML);
+		$oDecorator	= new JsonSimpleXMLElementDecorator($oXML, true);
+		return json_encode($oDecorator, JSON_PRETTY_PRINT);
+	}
 
     /**
      * Operation createShipmentWithHttpInfo
@@ -118,12 +138,12 @@ class DefaultApi
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
      * @throws \CanadaPost\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return array of \CanadaPost\Model\ShipmentInfo, HTTP status code, HTTP response headers (array of strings)
      */
     public function createShipmentWithHttpInfo($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
-        $returnType = '\CanadaPost\Model\ShipmentInfo';
+        $returnType = ShipmentInfo::class;
         $request = $this->createShipmentRequest($str_customer, $str_mobo, $accept_language, $xmlbody);
 
         try {
@@ -135,7 +155,7 @@ class DefaultApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                    $e->getResponse() ? json_decode(self::GetJsonStringFromXMLStream($e->getResponse()->getBody())) : null
                 );
             }
 
@@ -150,15 +170,15 @@ class DefaultApi
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    $response->getBody()
+                    json_decode(self::GetJsonStringFromXMLStream($response->getBody()))
                 );
             }
 
             $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
+            if ($returnType === SplFileObject::class) {
                 $content = $responseBody; //stream goes to serializer
             } else {
-                $content = $responseBody->getContents();
+				$content	= self::GetJsonStringFromXMLStream($responseBody);
                 if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
@@ -175,71 +195,22 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CanadaPost\Model\ShipmentInfo',
+                        ShipmentInfo::class,
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
                     break;
                 case 202:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 406:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 415:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
+                        ErrorResponseObject::class,
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -259,7 +230,7 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createShipmentAsync($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
@@ -282,12 +253,12 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function createShipmentAsyncWithHttpInfo($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
-        $returnType = '\CanadaPost\Model\ShipmentInfo';
+        $returnType = ShipmentInfo::class;
         $request = $this->createShipmentRequest($str_customer, $str_mobo, $accept_language, $xmlbody);
 
         return $this->client
@@ -295,10 +266,10 @@ class DefaultApi
             ->then(
                 function ($response) use ($returnType) {
                     $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
+                    if ($returnType === SplFileObject::class) {
                         $content = $responseBody; //stream goes to serializer
                     } else {
-                        $content = $responseBody->getContents();
+						$content	= self::GetJsonStringFromXMLStream($responseBody);
                         if ($returnType !== 'string') {
                             $content = json_decode($content);
                         }
@@ -321,7 +292,7 @@ class DefaultApi
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        $response->getBody()
+						json_decode(self::GetJsonStringFromXMLStream($response->getBody()))
                     );
                 }
             );
@@ -335,20 +306,20 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function createShipmentRequest($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
         // verify the required parameter 'str_customer' is set
         if ($str_customer === null) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $str_customer when calling createShipment'
             );
         }
         // verify the required parameter 'str_mobo' is set
         if ($str_mobo === null) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $str_mobo when calling createShipment'
             );
         }
@@ -464,7 +435,7 @@ class DefaultApi
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
      * @throws \CanadaPost\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \CanadaPost\Model\Manifests
      */
     public function transmitShipment($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
@@ -484,12 +455,12 @@ class DefaultApi
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
      * @throws \CanadaPost\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return array of \CanadaPost\Model\Manifests, HTTP status code, HTTP response headers (array of strings)
      */
     public function transmitShipmentWithHttpInfo($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
-        $returnType = '\CanadaPost\Model\Manifests';
+        $returnType = Manifests::class;
         $request = $this->transmitShipmentRequest($str_customer, $str_mobo, $accept_language, $xmlbody);
 
         try {
@@ -501,7 +472,7 @@ class DefaultApi
                     "[{$e->getCode()}] {$e->getMessage()}",
                     $e->getCode(),
                     $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+					$e->getResponse() ? json_decode(self::GetJsonStringFromXMLStream($e->getResponse()->getBody())) : null
                 );
             }
 
@@ -516,15 +487,15 @@ class DefaultApi
                     ),
                     $statusCode,
                     $response->getHeaders(),
-                    $response->getBody()
+					json_decode(self::GetJsonStringFromXMLStream($response->getBody()))
                 );
             }
 
             $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
+            if ($returnType ===SplFileObject::class) {
                 $content = $responseBody; //stream goes to serializer
             } else {
-                $content = $responseBody->getContents();
+				$content	= self::GetJsonStringFromXMLStream($responseBody);
                 if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
@@ -541,71 +512,22 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CanadaPost\Model\Manifests',
+                        Manifests::class,
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
                     break;
-                case 202:
+				case 202:
+				case 400:
+				case 401:
+				case 403:
+				case 404:
+				case 406:
+				case 415:
+				case 500:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 401:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 406:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 415:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 500:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\CanadaPost\Model\ErrorResponseObject',
+                        ErrorResponseObject::class,
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -625,7 +547,7 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function transmitShipmentAsync($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
@@ -648,12 +570,12 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function transmitShipmentAsyncWithHttpInfo($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
-        $returnType = '\CanadaPost\Model\Manifests';
+        $returnType = Manifests::class;
         $request = $this->transmitShipmentRequest($str_customer, $str_mobo, $accept_language, $xmlbody);
 
         return $this->client
@@ -661,10 +583,10 @@ class DefaultApi
             ->then(
                 function ($response) use ($returnType) {
                     $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
+                    if ($returnType === SplFileObject::class) {
                         $content = $responseBody; //stream goes to serializer
                     } else {
-                        $content = $responseBody->getContents();
+						$content	= self::GetJsonStringFromXMLStream($responseBody);
                         if ($returnType !== 'string') {
                             $content = json_decode($content);
                         }
@@ -687,7 +609,7 @@ class DefaultApi
                         ),
                         $statusCode,
                         $response->getHeaders(),
-                        $response->getBody()
+						json_decode(self::GetJsonStringFromXMLStream($response->getBody()))
                     );
                 }
             );
@@ -701,20 +623,20 @@ class DefaultApi
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     protected function transmitShipmentRequest($str_customer, $str_mobo, $accept_language = null, $xmlbody = null)
     {
         // verify the required parameter 'str_customer' is set
         if ($str_customer === null) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $str_customer when calling transmitShipment'
             );
         }
         // verify the required parameter 'str_mobo' is set
         if ($str_mobo === null) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $str_mobo when calling transmitShipment'
             );
         }
@@ -756,12 +678,12 @@ class DefaultApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/vnd.cpc.shipment-v8+xml']
+                ['application/vnd.cpc.manifest-v8+xml']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/vnd.cpc.shipment-v8+xml'],
-                ['application/vnd.cpc.shipment-v8+xml']
+                ['application/vnd.cpc.manifest-v8+xml'],
+                ['application/vnd.cpc.manifest-v8+xml']
             );
         }
 

@@ -61,7 +61,8 @@ class TransmitSet implements ModelInterface, ArrayAccess
         'requested_shipping_point' => 'string',
         'cpc_pickup_indicator' => 'bool',
         'method_of_payment' => 'string',
-        'manifest_address' => '\CanadaPost\Model\TransmitsetManifestaddress'
+        'manifest_address' => '\CanadaPost\Model\TransmitsetManifestaddress',
+		'detailed_manifests' => 'bool'
     ];
 
     /**
@@ -74,7 +75,8 @@ class TransmitSet implements ModelInterface, ArrayAccess
         'requested_shipping_point' => null,
         'cpc_pickup_indicator' => null,
         'method_of_payment' => null,
-        'manifest_address' => null
+        'manifest_address' => null,
+		'detailed_manifests' => null
     ];
 
     /**
@@ -108,7 +110,9 @@ class TransmitSet implements ModelInterface, ArrayAccess
         'requested_shipping_point' => 'requested-shipping-point',
         'cpc_pickup_indicator' => 'cpc-pickup-indicator',
         'method_of_payment' => 'method-of-payment',
-        'manifest_address' => 'manifest-address'
+        'manifest_address' => 'manifest-address',
+		'detailed_manifests' => 'detailed-manifests'
+
     ];
 
     /**
@@ -121,7 +125,8 @@ class TransmitSet implements ModelInterface, ArrayAccess
         'requested_shipping_point' => 'setRequestedShippingPoint',
         'cpc_pickup_indicator' => 'setCpcPickupIndicator',
         'method_of_payment' => 'setMethodOfPayment',
-        'manifest_address' => 'setManifestAddress'
+        'manifest_address' => 'setManifestAddress',
+		'detailed_manifests' => 'setDetailedManifests'
     ];
 
     /**
@@ -134,7 +139,8 @@ class TransmitSet implements ModelInterface, ArrayAccess
         'requested_shipping_point' => 'getRequestedShippingPoint',
         'cpc_pickup_indicator' => 'getCpcPickupIndicator',
         'method_of_payment' => 'getMethodOfPayment',
-        'manifest_address' => 'getManifestAddress'
+        'manifest_address' => 'getManifestAddress',
+		'detailed_manifests' => 'getDetailedManifests'
     ];
 
     /**
@@ -202,6 +208,7 @@ class TransmitSet implements ModelInterface, ArrayAccess
         $this->container['cpc_pickup_indicator'] = isset($data['cpc_pickup_indicator']) ? $data['cpc_pickup_indicator'] : null;
         $this->container['method_of_payment'] = isset($data['method_of_payment']) ? $data['method_of_payment'] : null;
         $this->container['manifest_address'] = isset($data['manifest_address']) ? $data['manifest_address'] : null;
+        $this->container['detailed_manifests'] = isset($data['detailed_manifests']) ? $data['detailed_manifests'] : null;
     }
 
     /**
@@ -348,6 +355,31 @@ class TransmitSet implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+	/**
+	  * Gets detailed_manifests
+	  *
+	  * @return bool
+	  */
+	 public function getDetailedManifests()
+	 {
+		 return $this->container['detailed_manifests'];
+	 }
+
+	 /**
+	  * Sets detailed_manifests
+	  *
+	  * @param bool $detailed_manifests
+	  *
+	  * @return $this
+	  */
+	 public function setDetailedManifests($detailed_manifests)
+	 {
+		 $this->container['detailed_manifests'] = $detailed_manifests;
+
+		 return $this;
+	 }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -401,22 +433,40 @@ class TransmitSet implements ModelInterface, ArrayAccess
         unset($this->container[$offset]);
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
+	/**
+	 * Gets the string presentation of the object
+	 *
+	 * @return string
+	 * @throws \Exception
+	 */
     public function __toString()
-    {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+	{
+		$oSanitizedObject	= ObjectSerializer::sanitizeForSerialization($this);
 
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+		$oSerializer	= new \XML_Serializer([
+			XML_SERIALIZER_OPTION_INDENT		=> '    ',
+			XML_SERIALIZER_OPTION_LINEBREAKS	=> "\n",
+			XML_SERIALIZER_OPTION_DEFAULT_TAG	=> 'group-id', // This is probably the biggest hack in this project, together with the same hack in Shipment! :D :D :D
+			XML_SERIALIZER_OPTION_ROOT_NAME		=> 'transmit-set',
+			XML_SERIALIZER_OPTION_ROOT_ATTRIBS	=> [ 'xmlns' => 'http://www.canadapost.ca/ws/manifest-v8' ]
+		]);
+
+		if(!$oSerializer->serialize($oSanitizedObject))
+		{
+			throw new \Exception('Could not serialize object');
+		}
+
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".$oSerializer->getSerializedData();
+
+//        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
+//            return json_encode(
+//                ObjectSerializer::sanitizeForSerialization($this),
+//                JSON_PRETTY_PRINT
+//            );
+//        }
+//
+//        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+	}
 }
 
 

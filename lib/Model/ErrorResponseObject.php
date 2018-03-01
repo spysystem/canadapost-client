@@ -49,7 +49,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ErrorResponseObject';
+    protected static $swaggerModelName = 'messages';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+        'message'	=> '\CanadaPost\Model\ErrorResponseMessage[]'
     ];
 
     /**
@@ -66,7 +66,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        
+        'message'	=> null
     ];
 
     /**
@@ -96,7 +96,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'message'	=> 'message'
     ];
 
     /**
@@ -105,7 +105,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        
+        'message'	=> 'setMessage'
     ];
 
     /**
@@ -114,7 +114,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        
+        'message'	=> 'getMessage'
     ];
 
     /**
@@ -177,6 +177,7 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+		$this->container['message'] = isset($data['message']) ? $data['message'] : null;
     }
 
     /**
@@ -205,6 +206,31 @@ class ErrorResponseObject implements ModelInterface, ArrayAccess
 
         return true;
     }
+
+
+	/**
+	 * Gets message
+	 *
+	 * @return ErrorResponseMessage[]
+	 */
+	public function getMessage()
+	{
+		return $this->container['message'];
+	}
+
+	/**
+	 * Sets message
+	 *
+	 * @param ErrorResponseMessage[] $message message
+	 *
+	 * @return $this
+	 */
+	public function setMessage($message)
+	{
+		$this->container['message'] = $message;
+
+		return $this;
+	}
 
     /**
      * Returns true if offset exists. False otherwise.

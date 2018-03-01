@@ -159,6 +159,9 @@ definitions:
       method-of-payment:
         type: string
         description: Account
+      detailed-manifests:
+        type: boolean
+        description: True if should get detailed manifests
       manifest-address:
         type: object
         properties:
@@ -247,9 +250,9 @@ definitions:
   address-details:
     type: object
     properties:
-      address-line1:
+      address-line-1:
         type: string
-      address-line2:
+      address-line-2:
         type: string
       city:
         type: string
@@ -360,7 +363,7 @@ definitions:
         type: string
       shipment-status:
         type: string
-      tracing-pin:
+      tracking-pin:
         type: string
       links:
         type: array

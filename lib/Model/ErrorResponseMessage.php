@@ -1,6 +1,6 @@
 <?php
 /**
- * ErrorResponseObjectInner
+ * ErrorResponseMessage
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * ErrorResponseObjectInner Class Doc Comment
+ * ErrorResponseMessage Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ErrorResponseObjectInner implements ModelInterface, ArrayAccess
+class ErrorResponseMessage implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ErrorResponseObjectInner implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ErrorResponseObject_inner';
+    protected static $swaggerModelName = 'ErrorResponseMessage';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

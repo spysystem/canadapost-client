@@ -104,7 +104,7 @@ Class | Method | HTTP request | Description
  - [DeliverySpec](docs/Model/DeliverySpec.md)
  - [Destination](docs/Model/Destination.md)
  - [ErrorResponseObject](docs/Model/ErrorResponseObject.md)
- - [ErrorResponseObjectInner](docs/Model/ErrorResponseObjectInner.md)
+ - [ErrorResponseMessage](docs/Model/ErrorResponseObjectInner.md)
  - [Manifest](docs/Model/Manifest.md)
  - [Manifests](docs/Model/Manifests.md)
  - [ManifestsInner](docs/Model/ManifestsInner.md)

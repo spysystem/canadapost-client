@@ -28,6 +28,8 @@
  */
 
 namespace CanadaPost;
+use DateTime;
+use SplFileObject;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -52,8 +54,8 @@ class ObjectSerializer
     {
         if (is_scalar($data) || null === $data) {
             return $data;
-        } elseif ($data instanceof \DateTime) {
-            return ($format === 'date') ? $data->format('Y-m-d') : $data->format(\DateTime::ATOM);
+        } elseif ($data instanceof DateTime) {
+            return ($format === 'date') ? $data->format('Y-m-d') : $data->format(DateTime::ATOM);
         } elseif (is_array($data)) {
             foreach ($data as $property => $value) {
                 $data[$property] = self::sanitizeForSerialization($value);
@@ -118,7 +120,7 @@ class ObjectSerializer
      * If it's a string, pass through unchanged. It will be url-encoded
      * later.
      *
-     * @param string[]|string|\DateTime $object an object to be serialized to a string
+     * @param string[]|string|DateTime $object an object to be serialized to a string
      *
      * @return string the serialized object
      */
@@ -150,13 +152,13 @@ class ObjectSerializer
      * the http body (form parameter). If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601
      *
-     * @param string|\SplFileObject $value the value of the form parameter
+     * @param string|SplFileObject $value the value of the form parameter
      *
      * @return string the form string
      */
     public static function toFormValue($value)
     {
-        if ($value instanceof \SplFileObject) {
+        if ($value instanceof SplFileObject) {
             return $value->getRealPath();
         } else {
             return self::toString($value);
@@ -168,14 +170,14 @@ class ObjectSerializer
      * the parameter. If it's a string, pass through unchanged
      * If it's a datetime object, format it in ISO8601
      *
-     * @param string|\DateTime $value the value of the parameter
+     * @param string|DateTime $value the value of the parameter
      *
      * @return string the header string
      */
     public static function toString($value)
     {
-        if ($value instanceof \DateTime) { // datetime in ISO8601 format
-            return $value->format(\DateTime::ATOM);
+        if ($value instanceof DateTime) { // datetime in ISO8601 format
+            return $value->format(DateTime::ATOM);
         } else {
             return $value;
         }
@@ -243,14 +245,22 @@ class ObjectSerializer
         } elseif (strcasecmp(substr($class, -2), '[]') === 0) {
             $subClass = substr($class, 0, -2);
             $values = [];
-            foreach ($data as $key => $value) {
-                $values[] = self::deserialize($value, $subClass, null);
-            }
+			// Hack to deal with json arrays when there is only one item in it...
+			if(is_array($data))
+			{
+				foreach ($data as $key => $value) {
+					$values[] = self::deserialize($value, $subClass, null);
+				}
+			}
+			else
+			{
+				$values[] = self::deserialize($data, $subClass, null);
+			}
             return $values;
         } elseif ($class === 'object') {
             settype($data, 'array');
             return $data;
-        } elseif ($class === '\DateTime') {
+        } elseif ($class === '\DateTime' || $class === DateTime::class) {
             // Some API's return an invalid, empty string as a
             // date-time property. DateTime::__construct() will return
             // the current time for empty input which is probably not
@@ -258,14 +268,14 @@ class ObjectSerializer
             // be interpreted as a missing field/value. Let's handle
             // this graceful.
             if (!empty($data)) {
-                return new \DateTime($data);
+                return new DateTime($data);
             } else {
                 return null;
             }
         } elseif (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
             settype($data, $class);
             return $data;
-        } elseif ($class === '\SplFileObject') {
+        } elseif ($class === '\SplFileObject' || $class === SplFileObject::class) {
             /** @var \Psr\Http\Message\StreamInterface $data */
 
             // determine file name
@@ -282,7 +292,7 @@ class ObjectSerializer
             }
             fclose($file);
 
-            return new \SplFileObject($filename, 'r');
+            return new SplFileObject($filename, 'r');
         } elseif (method_exists($class, 'getAllowableEnumValues')) {
             if (!in_array($data, $class::getAllowableEnumValues())) {
                 $imploded = implode("', '", $class::getAllowableEnumValues());
@@ -291,7 +301,11 @@ class ObjectSerializer
             return $data;
         } else {
             // If a discriminator is defined and points to a valid subclass, use it.
-            $discriminator = $class::DISCRIMINATOR;
+			$discriminator	= '';
+			if(defined($class.'::DISCRIMINATOR'))
+			{
+				$discriminator	= $class::DISCRIMINATOR;
+			}
             if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
                 $subclass = '\CanadaPost\Model\\' . $data->{$discriminator};
                 if (is_subclass_of($subclass, $class)) {

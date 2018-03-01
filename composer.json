@@ -7,6 +7,10 @@
         "sdk",
         "api"
     ],
+    "repositories": [
+       {"type": "composer", "url": "https://repo.packagist.com/spysystem/"},
+       {"packagist.org": false}
+ 	],
     "homepage": "http://swagger.io",
     "license": "proprietary",
     "authors": [
@@ -20,7 +24,9 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "pear/xml_serializer": "0.*",
+        "spysystem/json-simplexmlelement-decorator": "~1.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",

@@ -60,8 +60,8 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         'customer_request_id' => 'string',
         'shipment_id' => 'string',
         'shipment_status' => 'string',
-        'tracing_pin' => 'string',
-        'links' => '\CanadaPost\Model\ShipmentinfoLinks[]'
+        'tracking_pin' => 'string',
+        'links' => '\CanadaPost\Model\ShipmentinfoLinks'
     ];
 
     /**
@@ -73,7 +73,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         'customer_request_id' => null,
         'shipment_id' => null,
         'shipment_status' => null,
-        'tracing_pin' => null,
+        'tracking_pin' => null,
         'links' => null
     ];
 
@@ -107,7 +107,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         'customer_request_id' => 'customer-request-id',
         'shipment_id' => 'shipment-id',
         'shipment_status' => 'shipment-status',
-        'tracing_pin' => 'tracing-pin',
+        'tracking_pin' => 'tracking-pin',
         'links' => 'links'
     ];
 
@@ -120,7 +120,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         'customer_request_id' => 'setCustomerRequestId',
         'shipment_id' => 'setShipmentId',
         'shipment_status' => 'setShipmentStatus',
-        'tracing_pin' => 'setTracingPin',
+        'tracking_pin' => 'setTrackingPin',
         'links' => 'setLinks'
     ];
 
@@ -133,7 +133,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         'customer_request_id' => 'getCustomerRequestId',
         'shipment_id' => 'getShipmentId',
         'shipment_status' => 'getShipmentStatus',
-        'tracing_pin' => 'getTracingPin',
+        'tracking_pin' => 'getTrackingPin',
         'links' => 'getLinks'
     ];
 
@@ -200,7 +200,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
         $this->container['customer_request_id'] = isset($data['customer_request_id']) ? $data['customer_request_id'] : null;
         $this->container['shipment_id'] = isset($data['shipment_id']) ? $data['shipment_id'] : null;
         $this->container['shipment_status'] = isset($data['shipment_status']) ? $data['shipment_status'] : null;
-        $this->container['tracing_pin'] = isset($data['tracing_pin']) ? $data['tracing_pin'] : null;
+        $this->container['tracking_pin'] = isset($data['tracking_pin']) ? $data['tracking_pin'] : null;
         $this->container['links'] = isset($data['links']) ? $data['links'] : null;
     }
 
@@ -302,25 +302,25 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets tracing_pin
+     * Gets tracking_pin
      *
      * @return string
      */
-    public function getTracingPin()
+    public function getTrackingPin()
     {
-        return $this->container['tracing_pin'];
+        return $this->container['tracking_pin'];
     }
 
     /**
-     * Sets tracing_pin
+     * Sets tracking_pin
      *
-     * @param string $tracing_pin tracing_pin
+     * @param string $tracking_pin tracking_pin
      *
      * @return $this
      */
-    public function setTracingPin($tracing_pin)
+    public function setTrackingPin($tracking_pin)
     {
-        $this->container['tracing_pin'] = $tracing_pin;
+        $this->container['tracking_pin'] = $tracking_pin;
 
         return $this;
     }
@@ -328,7 +328,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
     /**
      * Gets links
      *
-     * @return \CanadaPost\Model\ShipmentinfoLinks[]
+     * @return \CanadaPost\Model\ShipmentinfoLinks
      */
     public function getLinks()
     {
@@ -338,7 +338,7 @@ class ShipmentInfo implements ModelInterface, ArrayAccess
     /**
      * Sets links
      *
-     * @param \CanadaPost\Model\ShipmentinfoLinks[] $links links
+     * @param \CanadaPost\Model\ShipmentinfoLinks $links links
      *
      * @return $this
      */

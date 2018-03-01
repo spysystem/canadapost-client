@@ -57,10 +57,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'rel' => 'string',
-        'href' => 'string',
-        'media_type' => 'string',
-        'index' => 'string'
+        'link' => '\CanadaPost\Model\ShipmentinfoLink[]'
     ];
 
     /**
@@ -69,10 +66,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'rel' => null,
-        'href' => null,
-        'media_type' => null,
-        'index' => null
+        'link' => null
     ];
 
     /**
@@ -102,10 +96,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'rel' => 'rel',
-        'href' => 'href',
-        'media_type' => 'media-type',
-        'index' => 'index'
+        'link' => 'link'
     ];
 
     /**
@@ -114,10 +105,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'rel' => 'setRel',
-        'href' => 'setHref',
-        'media_type' => 'setMediaType',
-        'index' => 'setIndex'
+        'link' => 'setLink'
     ];
 
     /**
@@ -126,10 +114,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'rel' => 'getRel',
-        'href' => 'getHref',
-        'media_type' => 'getMediaType',
-        'index' => 'getIndex'
+        'link' => 'getLink'
     ];
 
     /**
@@ -192,10 +177,7 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['rel'] = isset($data['rel']) ? $data['rel'] : null;
-        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
-        $this->container['media_type'] = isset($data['media_type']) ? $data['media_type'] : null;
-        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
+        $this->container['link'] = isset($data['link']) ? $data['link'] : null;
     }
 
     /**
@@ -224,100 +206,29 @@ class ShipmentinfoLinks implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets rel
+     * Gets link
      *
-     * @return string
+     * @return ShipmentinfoLink[]
      */
-    public function getRel()
+    public function getLink()
     {
-        return $this->container['rel'];
+        return $this->container['link'];
     }
 
     /**
-     * Sets rel
+     * Sets link
      *
-     * @param string $rel rel
+     * @param ShipmentinfoLink[] $link link
      *
      * @return $this
      */
-    public function setRel($rel)
+    public function setLink($link)
     {
-        $this->container['rel'] = $rel;
+        $this->container['link'] = $link;
 
         return $this;
     }
 
-    /**
-     * Gets href
-     *
-     * @return string
-     */
-    public function getHref()
-    {
-        return $this->container['href'];
-    }
-
-    /**
-     * Sets href
-     *
-     * @param string $href href
-     *
-     * @return $this
-     */
-    public function setHref($href)
-    {
-        $this->container['href'] = $href;
-
-        return $this;
-    }
-
-    /**
-     * Gets media_type
-     *
-     * @return string
-     */
-    public function getMediaType()
-    {
-        return $this->container['media_type'];
-    }
-
-    /**
-     * Sets media_type
-     *
-     * @param string $media_type media_type
-     *
-     * @return $this
-     */
-    public function setMediaType($media_type)
-    {
-        $this->container['media_type'] = $media_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets index
-     *
-     * @return string
-     */
-    public function getIndex()
-    {
-        return $this->container['index'];
-    }
-
-    /**
-     * Sets index
-     *
-     * @param string $index index
-     *
-     * @return $this
-     */
-    public function setIndex($index)
-    {
-        $this->container['index'] = $index;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

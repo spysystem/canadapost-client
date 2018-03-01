@@ -31,6 +31,8 @@ namespace CanadaPost\Model;
 
 use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
+use DOMDocument;
+use DOMNode;
 
 /**
  * Shipment Class Doc Comment
@@ -108,7 +110,8 @@ class Shipment implements ModelInterface, ArrayAccess
         'group_id' => 'group-id',
         'requested_shipping_point' => 'requested-shipping-point',
         'cpc_pickup_indicator' => 'cpc-pickup-indicator',
-        'delivery_spec' => 'delivery-spec'
+        'delivery_spec' => 'delivery-spec',
+		'options' => 'options'
     ];
 
     /**
@@ -121,7 +124,8 @@ class Shipment implements ModelInterface, ArrayAccess
         'group_id' => 'setGroupId',
         'requested_shipping_point' => 'setRequestedShippingPoint',
         'cpc_pickup_indicator' => 'setCpcPickupIndicator',
-        'delivery_spec' => 'setDeliverySpec'
+        'delivery_spec' => 'setDeliverySpec',
+		'options' => 'setOptions'
     ];
 
     /**
@@ -348,6 +352,7 @@ class Shipment implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
     /**
      * Returns true if offset exists. False otherwise.
      *
@@ -401,22 +406,67 @@ class Shipment implements ModelInterface, ArrayAccess
         unset($this->container[$offset]);
     }
 
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        if (defined('JSON_PRETTY_PRINT')) { // use JSON pretty print
-            return json_encode(
-                ObjectSerializer::sanitizeForSerialization($this),
-                JSON_PRETTY_PRINT
-            );
-        }
+	/**
+	 * Gets the string presentation of the object
+	 *
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function __toString()
+	{
+		$oSanitizedObject	= ObjectSerializer::sanitizeForSerialization($this);
 
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+		$oSerializer	= new \XML_Serializer([
+			XML_SERIALIZER_OPTION_INDENT		=> '    ',
+			XML_SERIALIZER_OPTION_LINEBREAKS	=> "\n",
+			XML_SERIALIZER_OPTION_DEFAULT_TAG	=> 'item', // This is probably the biggest hack in this project, together with the same hack in TransmitSet! :D :D :D
+			XML_SERIALIZER_OPTION_ROOT_NAME		=> 'shipment',
+			XML_SERIALIZER_OPTION_ROOT_ATTRIBS	=> [ 'xmlns' => 'http://www.canadapost.ca/ws/shipment-v8' ]
+		]);
+
+		if(!$oSerializer->serialize($oSanitizedObject))
+		{
+			throw new \Exception('Could not serialize object');
+		}
+
+		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".self::ConvertItemToOption($oSerializer->getSerializedData());
+
+	}
+
+	/**
+	 * @param string $strXML
+	 *
+	 * @return string
+	 */
+	protected static function ConvertItemToOption(string $strXML): string
+	{
+		$oDom	= new DOMDocument();
+		$oDom->loadXML($strXML);
+
+
+		$oOptionsNodeList	= $oDom->getElementsByTagName('options');
+
+		if($oOptionsNodeList->length > 0)
+		{
+			$oOptionsNode	= $oOptionsNodeList->item(0);
+
+			/** @var DOMNode $oItem */
+			foreach($oOptionsNode->getElementsByTagName('item') as $oItem)
+			{
+				$oOption	= $oDom->createElement('option');
+				$oOption->removeAttribute('xmlns');
+				/** @var DOMNode $oChildNode */
+				foreach ($oItem->childNodes as $oChildNode)
+				{
+					$oOption->appendChild($oChildNode->cloneNode(true));
+				}
+
+				$oItem->parentNode->replaceChild($oOption, $oItem);
+			}
+		}
+
+		return $oDom->saveXML($oDom->documentElement);
+	}
 }
 
 

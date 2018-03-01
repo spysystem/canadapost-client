@@ -1,6 +1,6 @@
 <?php
 /**
- * AddressDetails
+ * ShipmentinfoLinks
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * AddressDetails Class Doc Comment
+ * ShipmentinfoLink Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class AddressDetails implements ModelInterface, ArrayAccess
+class ShipmentinfoLink implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AddressDetails implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'address-details';
+    protected static $swaggerModelName = 'shipmentinfo_link';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'address_line_1' => 'string',
-        'address_line_2' => 'string',
-        'city' => 'string',
-        'prov_state' => 'string',
-        'country_code' => 'string',
-        'postal_zip_code' => 'string'
+        'rel' => 'string',
+        'href' => 'string',
+        'media_type' => 'string',
+        'index' => 'string'
     ];
 
     /**
@@ -71,12 +69,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'address_line_1' => null,
-        'address_line_2' => null,
-        'city' => null,
-        'prov_state' => null,
-        'country_code' => null,
-        'postal_zip_code' => null
+        'rel' => null,
+        'href' => null,
+        'media_type' => null,
+        'index' => null
     ];
 
     /**
@@ -106,12 +102,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'address_line_1' => 'address-line-1',
-        'address_line_2' => 'address-line-2',
-        'city' => 'city',
-        'prov_state' => 'prov-state',
-        'country_code' => 'country-code',
-        'postal_zip_code' => 'postal-zip-code'
+        'rel' => 'rel',
+        'href' => 'href',
+        'media_type' => 'media-type',
+        'index' => 'index'
     ];
 
     /**
@@ -120,12 +114,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'address_line_1' => 'setAddressLine1',
-        'address_line_2' => 'setAddressLine2',
-        'city' => 'setCity',
-        'prov_state' => 'setProvState',
-        'country_code' => 'setCountryCode',
-        'postal_zip_code' => 'setPostalZipCode'
+        'rel' => 'setRel',
+        'href' => 'setHref',
+        'media_type' => 'setMediaType',
+        'index' => 'setIndex'
     ];
 
     /**
@@ -134,12 +126,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'address_line_1' => 'getAddressLine1',
-        'address_line_2' => 'getAddressLine2',
-        'city' => 'getCity',
-        'prov_state' => 'getProvState',
-        'country_code' => 'getCountryCode',
-        'postal_zip_code' => 'getPostalZipCode'
+        'rel' => 'getRel',
+        'href' => 'getHref',
+        'media_type' => 'getMediaType',
+        'index' => 'getIndex'
     ];
 
     /**
@@ -202,12 +192,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['address_line_1'] = isset($data['address_line_1']) ? $data['address_line_1'] : null;
-        $this->container['address_line_2'] = isset($data['address_line_2']) ? $data['address_line_2'] : null;
-        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
-        $this->container['prov_state'] = isset($data['prov_state']) ? $data['prov_state'] : null;
-        $this->container['country_code'] = isset($data['country_code']) ? $data['country_code'] : null;
-        $this->container['postal_zip_code'] = isset($data['postal_zip_code']) ? $data['postal_zip_code'] : null;
+        $this->container['rel'] = isset($data['rel']) ? $data['rel'] : null;
+        $this->container['href'] = isset($data['href']) ? $data['href'] : null;
+        $this->container['media_type'] = isset($data['media_type']) ? $data['media_type'] : null;
+        $this->container['index'] = isset($data['index']) ? $data['index'] : null;
     }
 
     /**
@@ -236,145 +224,97 @@ class AddressDetails implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets address_line_1
+     * Gets rel
      *
      * @return string
      */
-    public function getAddressLine1()
+    public function getRel()
     {
-        return $this->container['address_line_1'];
+        return $this->container['rel'];
     }
 
     /**
-     * Sets address_line_1
+     * Sets rel
      *
-     * @param string $address_line_1 address_line_1
+     * @param string $rel rel
      *
      * @return $this
      */
-    public function setAddressLine1($address_line_1)
+    public function setRel($rel)
     {
-        $this->container['address_line_1'] = $address_line_1;
+        $this->container['rel'] = $rel;
 
         return $this;
     }
 
     /**
-     * Gets address_line_2
+     * Gets href
      *
      * @return string
      */
-    public function getAddressLine2()
+    public function getHref()
     {
-        return $this->container['address_line_2'];
+        return $this->container['href'];
     }
 
     /**
-     * Sets address_line_2
+     * Sets href
      *
-     * @param string $address_line_2 address_line_2
+     * @param string $href href
      *
      * @return $this
      */
-    public function setAddressLine2($address_line_2)
+    public function setHref($href)
     {
-        $this->container['address_line_2'] = $address_line_2;
+        $this->container['href'] = $href;
 
         return $this;
     }
 
     /**
-     * Gets city
+     * Gets media_type
      *
      * @return string
      */
-    public function getCity()
+    public function getMediaType()
     {
-        return $this->container['city'];
+        return $this->container['media_type'];
     }
 
     /**
-     * Sets city
+     * Sets media_type
      *
-     * @param string $city city
+     * @param string $media_type media_type
      *
      * @return $this
      */
-    public function setCity($city)
+    public function setMediaType($media_type)
     {
-        $this->container['city'] = $city;
+        $this->container['media_type'] = $media_type;
 
         return $this;
     }
 
     /**
-     * Gets prov_state
+     * Gets index
      *
      * @return string
      */
-    public function getProvState()
+    public function getIndex()
     {
-        return $this->container['prov_state'];
+        return $this->container['index'];
     }
 
     /**
-     * Sets prov_state
+     * Sets index
      *
-     * @param string $prov_state prov_state
+     * @param string $index index
      *
      * @return $this
      */
-    public function setProvState($prov_state)
+    public function setIndex($index)
     {
-        $this->container['prov_state'] = $prov_state;
-
-        return $this;
-    }
-
-    /**
-     * Gets country_code
-     *
-     * @return string
-     */
-    public function getCountryCode()
-    {
-        return $this->container['country_code'];
-    }
-
-    /**
-     * Sets country_code
-     *
-     * @param string $country_code country_code
-     *
-     * @return $this
-     */
-    public function setCountryCode($country_code)
-    {
-        $this->container['country_code'] = $country_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets postal_zip_code
-     *
-     * @return string
-     */
-    public function getPostalZipCode()
-    {
-        return $this->container['postal_zip_code'];
-    }
-
-    /**
-     * Sets postal_zip_code
-     *
-     * @param string $postal_zip_code postal_zip_code
-     *
-     * @return $this
-     */
-    public function setPostalZipCode($postal_zip_code)
-    {
-        $this->container['postal_zip_code'] = $postal_zip_code;
+        $this->container['index'] = $index;
 
         return $this;
     }

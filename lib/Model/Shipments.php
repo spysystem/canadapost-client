@@ -57,7 +57,7 @@ class Shipments implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+		'link' => '\CanadaPost\Model\ShipmentinfoLink[]'
     ];
 
     /**
@@ -66,7 +66,7 @@ class Shipments implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        
+		'link' => null
     ];
 
     /**
@@ -89,33 +89,33 @@ class Shipments implements ModelInterface, ArrayAccess
         return self::$swaggerFormats;
     }
 
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @var string[]
-     */
-    protected static $attributeMap = [
-        
-    ];
+	/**
+	  * Array of attributes where the key is the local name,
+	  * and the value is the original name
+	  *
+	  * @var string[]
+	  */
+	protected static $attributeMap = [
+		'link' => 'link'
+	];
 
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
-     */
-    protected static $setters = [
-        
-    ];
+	/**
+	* Array of attributes to setter functions (for deserialization of responses)
+	*
+	* @var string[]
+	*/
+	protected static $setters = [
+		'link' => 'setLink'
+	];
 
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        
-    ];
+	/**
+	* Array of attributes to getter functions (for serialization of requests)
+	*
+	* @var string[]
+	*/
+	protected static $getters = [
+		'link' => 'getLink'
+	];
 
     /**
      * Array of attributes where the key is the local name,
@@ -177,6 +177,7 @@ class Shipments implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+		$this->container['link'] = isset($data['link']) ? $data['link'] : null;
     }
 
     /**
@@ -205,6 +206,30 @@ class Shipments implements ModelInterface, ArrayAccess
 
         return true;
     }
+
+	/**
+	 * Gets link
+	 *
+	 * @return ShipmentinfoLink[]
+	 */
+	public function getLink()
+	{
+		return $this->container['link'];
+	}
+
+	/**
+	 * Sets link
+	 *
+	 * @param ShipmentinfoLink[] $link link
+	 *
+	 * @return $this
+	 */
+	public function setLink($link)
+	{
+		$this->container['link'] = $link;
+
+		return $this;
+	}
 
     /**
      * Returns true if offset exists. False otherwise.

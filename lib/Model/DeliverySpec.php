@@ -65,7 +65,8 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         'preferences' => '\CanadaPost\Model\DeliveryPreferences',
         'references' => '\CanadaPost\Model\DeliveryReferences',
         'customs' => '\CanadaPost\Model\DeliveryCustoms',
-        'settlement_info' => '\CanadaPost\Model\DeliverySettlementInfo'
+        'settlement_info' => '\CanadaPost\Model\DeliverySettlementInfo',
+		'options' => '\CanadaPost\Model\DeliveryOption[]'
     ];
 
     /**
@@ -82,7 +83,8 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         'preferences' => null,
         'references' => null,
         'customs' => null,
-        'settlement_info' => null
+        'settlement_info' => null,
+		'options' => null
     ];
 
     /**
@@ -120,7 +122,8 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         'preferences' => 'preferences',
         'references' => 'references',
         'customs' => 'customs',
-        'settlement_info' => 'settlement-info'
+        'settlement_info' => 'settlement-info',
+		'options' => 'options'
     ];
 
     /**
@@ -137,7 +140,8 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         'preferences' => 'setPreferences',
         'references' => 'setReferences',
         'customs' => 'setCustoms',
-        'settlement_info' => 'setSettlementInfo'
+        'settlement_info' => 'setSettlementInfo',
+		'options' => 'setOptions'
     ];
 
     /**
@@ -154,7 +158,8 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         'preferences' => 'getPreferences',
         'references' => 'getReferences',
         'customs' => 'getCustoms',
-        'settlement_info' => 'getSettlementInfo'
+        'settlement_info' => 'getSettlementInfo',
+		'options' => 'getOptions'
     ];
 
     /**
@@ -226,6 +231,7 @@ class DeliverySpec implements ModelInterface, ArrayAccess
         $this->container['references'] = isset($data['references']) ? $data['references'] : null;
         $this->container['customs'] = isset($data['customs']) ? $data['customs'] : null;
         $this->container['settlement_info'] = isset($data['settlement_info']) ? $data['settlement_info'] : null;
+		$this->container['options'] = isset($data['options']) ? $data['options'] : null;
     }
 
     /**
@@ -468,6 +474,31 @@ class DeliverySpec implements ModelInterface, ArrayAccess
 
         return $this;
     }
+
+	/**
+	 * Gets options
+	 *
+	 * @return \CanadaPost\Model\DeliveryOption[]
+	 */
+	public function getOptions()
+	{
+		return $this->container['options'];
+	}
+
+	/**
+	 * Sets options
+	 *
+	 * @param \CanadaPost\Model\DeliveryOption[] $options options
+	 *
+	 * @return $this
+	 */
+	public function setOptions($options)
+	{
+		$this->container['options'] = $options;
+
+		return $this;
+	}
+
     /**
      * Returns true if offset exists. False otherwise.
      *

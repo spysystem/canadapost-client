@@ -1,6 +1,6 @@
 <?php
 /**
- * AddressDetails
+ * DeliveryOption
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \CanadaPost\ObjectSerializer;
 
 /**
- * AddressDetails Class Doc Comment
+ * DeliveryOption Class Doc Comment
  *
  * @category Class
  * @package  CanadaPost
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class AddressDetails implements ModelInterface, ArrayAccess
+class DeliveryOption implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AddressDetails implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'address-details';
+    protected static $swaggerModelName = 'delivery-option';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +57,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'address_line_1' => 'string',
-        'address_line_2' => 'string',
-        'city' => 'string',
-        'prov_state' => 'string',
-        'country_code' => 'string',
-        'postal_zip_code' => 'string'
+        'option_code' => 'string',
+        'option_amount' => 'float',
+        'option_qualifier_1' => 'boolean',
+        'option_qualifier_2' => 'string'
     ];
 
     /**
@@ -71,12 +69,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'address_line_1' => null,
-        'address_line_2' => null,
-        'city' => null,
-        'prov_state' => null,
-        'country_code' => null,
-        'postal_zip_code' => null
+		'option_code' => null,
+		'option_amount' => null,
+		'option_qualifier_1' => null,
+		'option_qualifier_2' => null
     ];
 
     /**
@@ -106,12 +102,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'address_line_1' => 'address-line-1',
-        'address_line_2' => 'address-line-2',
-        'city' => 'city',
-        'prov_state' => 'prov-state',
-        'country_code' => 'country-code',
-        'postal_zip_code' => 'postal-zip-code'
+		'option_code' => 'option-code',
+		'option_amount' => 'option-amount',
+		'option_qualifier_1' => 'option-qualifier-1',
+		'option_qualifier_2' => 'option-qualifier-2'
     ];
 
     /**
@@ -120,12 +114,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'address_line_1' => 'setAddressLine1',
-        'address_line_2' => 'setAddressLine2',
-        'city' => 'setCity',
-        'prov_state' => 'setProvState',
-        'country_code' => 'setCountryCode',
-        'postal_zip_code' => 'setPostalZipCode'
+		'option_code' => 'setOptionCode',
+		'option_amount' => 'setOptionAmount',
+		'option_qualifier_1' => 'setOptionQualifier1',
+		'option_qualifier_2' => 'setOptionQualifier2'
     ];
 
     /**
@@ -134,12 +126,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'address_line_1' => 'getAddressLine1',
-        'address_line_2' => 'getAddressLine2',
-        'city' => 'getCity',
-        'prov_state' => 'getProvState',
-        'country_code' => 'getCountryCode',
-        'postal_zip_code' => 'getPostalZipCode'
+		'option_code' => 'getOptionCode',
+		'option_amount' => 'getOptionAmount',
+		'option_qualifier_1' => 'getOptionQualifier1',
+		'option_qualifier_2' => 'getOptionQualifier2'
     ];
 
     /**
@@ -202,12 +192,10 @@ class AddressDetails implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['address_line_1'] = isset($data['address_line_1']) ? $data['address_line_1'] : null;
-        $this->container['address_line_2'] = isset($data['address_line_2']) ? $data['address_line_2'] : null;
-        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
-        $this->container['prov_state'] = isset($data['prov_state']) ? $data['prov_state'] : null;
-        $this->container['country_code'] = isset($data['country_code']) ? $data['country_code'] : null;
-        $this->container['postal_zip_code'] = isset($data['postal_zip_code']) ? $data['postal_zip_code'] : null;
+        $this->container['option_code'] = isset($data['option_code']) ? $data['option_code'] : null;
+        $this->container['option_amount'] = isset($data['option_amount']) ? $data['option_amount'] : null;
+        $this->container['option_qualifier_1'] = isset($data['option_qualifier_1']) ? $data['option_qualifier_1'] : null;
+        $this->container['option_qualifier_2'] = isset($data['option_qualifier_2']) ? $data['option_qualifier_2'] : null;
     }
 
     /**
@@ -236,148 +224,101 @@ class AddressDetails implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets address_line_1
+     * Gets option_code
      *
      * @return string
      */
-    public function getAddressLine1()
+    public function getOptionCode()
     {
-        return $this->container['address_line_1'];
+        return $this->container['option_code'];
     }
 
     /**
-     * Sets address_line_1
+     * Sets option_code
      *
-     * @param string $address_line_1 address_line_1
+     * @param string $option_code option_code
      *
      * @return $this
      */
-    public function setAddressLine1($address_line_1)
+    public function setOptionCode($option_code)
     {
-        $this->container['address_line_1'] = $address_line_1;
+        $this->container['option_code'] = $option_code;
 
         return $this;
     }
 
     /**
-     * Gets address_line_2
+     * Gets option_amount
      *
-     * @return string
+     * @return float
      */
-    public function getAddressLine2()
+    public function getOptionAmount()
     {
-        return $this->container['address_line_2'];
+        return $this->container['option_amount'];
     }
 
     /**
-     * Sets address_line_2
+     * Sets option_amount
      *
-     * @param string $address_line_2 address_line_2
+     * @param float $option_amount option_amount
      *
      * @return $this
      */
-    public function setAddressLine2($address_line_2)
+    public function setOptionAmount($option_amount)
     {
-        $this->container['address_line_2'] = $address_line_2;
+        $this->container['option_amount'] = $option_amount;
 
         return $this;
     }
 
     /**
-     * Gets city
+     * Gets option_qualifier_1
      *
-     * @return string
+     * @return bool
      */
-    public function getCity()
+    public function getOptionQualifier1()
     {
-        return $this->container['city'];
+        return $this->container['option_qualifier_1'];
     }
 
     /**
-     * Sets city
+     * Sets option_qualifier_1
      *
-     * @param string $city city
+     * @param bool $option_qualifier_1 option_qualifier_1
      *
      * @return $this
      */
-    public function setCity($city)
+    public function setOptionQualifier1($option_qualifier_1)
     {
-        $this->container['city'] = $city;
+        $this->container['option_qualifier_1'] = $option_qualifier_1;
 
         return $this;
     }
 
-    /**
-     * Gets prov_state
-     *
-     * @return string
-     */
-    public function getProvState()
-    {
-        return $this->container['prov_state'];
-    }
+	/**
+	 * Gets option_qualifier_2
+	 *
+	 * @return bool
+	 */
+	public function getOptionQualifier2()
+	{
+		return $this->container['option_qualifier_2'];
+	}
 
-    /**
-     * Sets prov_state
-     *
-     * @param string $prov_state prov_state
-     *
-     * @return $this
-     */
-    public function setProvState($prov_state)
-    {
-        $this->container['prov_state'] = $prov_state;
+	/**
+	* Sets option_qualifier_2
+	*
+	* @param bool $option_qualifier_2 option_qualifier_2
+	*
+	* @return $this
+	*/
+	public function setOptionQualifier2($option_qualifier_2)
+	{
+		$this->container['option_qualifier_2'] = $option_qualifier_2;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Gets country_code
-     *
-     * @return string
-     */
-    public function getCountryCode()
-    {
-        return $this->container['country_code'];
-    }
-
-    /**
-     * Sets country_code
-     *
-     * @param string $country_code country_code
-     *
-     * @return $this
-     */
-    public function setCountryCode($country_code)
-    {
-        $this->container['country_code'] = $country_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets postal_zip_code
-     *
-     * @return string
-     */
-    public function getPostalZipCode()
-    {
-        return $this->container['postal_zip_code'];
-    }
-
-    /**
-     * Sets postal_zip_code
-     *
-     * @param string $postal_zip_code postal_zip_code
-     *
-     * @return $this
-     */
-    public function setPostalZipCode($postal_zip_code)
-    {
-        $this->container['postal_zip_code'] = $postal_zip_code;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

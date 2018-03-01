@@ -58,7 +58,7 @@ class Manifest implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'po_number' => 'string',
-        'links' => '\CanadaPost\Model\ShipmentinfoLinks[]'
+        'links' => '\CanadaPost\Model\ShipmentinfoLinks'
     ];
 
     /**
@@ -238,7 +238,7 @@ class Manifest implements ModelInterface, ArrayAccess
     /**
      * Gets links
      *
-     * @return \CanadaPost\Model\ShipmentinfoLinks[]
+     * @return \CanadaPost\Model\ShipmentinfoLinks
      */
     public function getLinks()
     {
@@ -248,7 +248,7 @@ class Manifest implements ModelInterface, ArrayAccess
     /**
      * Sets links
      *
-     * @param \CanadaPost\Model\ShipmentinfoLinks[] $links links
+     * @param \CanadaPost\Model\ShipmentinfoLinks $links links
      *
      * @return $this
      */
