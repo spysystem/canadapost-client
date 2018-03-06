@@ -29,8 +29,10 @@
 namespace CanadaPost\Api;
 
 use CanadaPost\Model\ErrorResponseObject;
+use CanadaPost\Model\Manifest;
 use CanadaPost\Model\Manifests;
 use CanadaPost\Model\ShipmentInfo;
+use CanadaPost\Model\Shipments;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -42,6 +44,7 @@ use CanadaPost\Configuration;
 use CanadaPost\HeaderSelector;
 use CanadaPost\ObjectSerializer;
 use InvalidArgumentException;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use SplFileObject;
 use SpyHelper\JsonSimpleXMLElementDecorator;
@@ -100,7 +103,7 @@ class DefaultApi
      * creates a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
@@ -133,7 +136,7 @@ class DefaultApi
      * creates a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
@@ -226,7 +229,7 @@ class DefaultApi
      * creates a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
@@ -249,7 +252,7 @@ class DefaultApi
      * creates a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
@@ -264,7 +267,7 @@ class DefaultApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function (ResponseInterface $response) use ($returnType) {
                     $responseBody = $response->getBody();
                     if ($returnType === SplFileObject::class) {
                         $content = $responseBody; //stream goes to serializer
@@ -281,7 +284,7 @@ class DefaultApi
                         $response->getHeaders()
                     ];
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
                     throw new ApiException(
@@ -302,7 +305,7 @@ class DefaultApi
      * Create request for operation 'createShipment'
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\Shipment $xmlbody Shipment data (optional)
      *
@@ -430,7 +433,7 @@ class DefaultApi
      * transmits a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
@@ -450,7 +453,7 @@ class DefaultApi
      * transmits a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
@@ -543,7 +546,7 @@ class DefaultApi
      * transmits a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
@@ -566,7 +569,7 @@ class DefaultApi
      * transmits a Shipment
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
@@ -581,7 +584,7 @@ class DefaultApi
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
-                function ($response) use ($returnType) {
+                function (ResponseInterface $response) use ($returnType) {
                     $responseBody = $response->getBody();
                     if ($returnType === SplFileObject::class) {
                         $content = $responseBody; //stream goes to serializer
@@ -598,7 +601,7 @@ class DefaultApi
                         $response->getHeaders()
                     ];
                 },
-                function ($exception) {
+                function (RequestException $exception) {
                     $response = $exception->getResponse();
                     $statusCode = $response->getStatusCode();
                     throw new ApiException(
@@ -619,7 +622,7 @@ class DefaultApi
      * Create request for operation 'transmitShipment'
      *
      * @param  string $str_customer Customer Number (required)
-     * @param  string $str_mobo Mailed On Behalf Of Custoner Number (required)
+     * @param  string $str_mobo Mailed On Behalf Of Customer Number (required)
      * @param  string $accept_language (optional)
      * @param  \CanadaPost\Model\TransmitSet $xmlbody Transmit set data (optional)
      *
@@ -759,4 +762,230 @@ class DefaultApi
 
         return $options;
     }
+
+	/**
+	 * @param string $strLink
+	 * @return SplFileObject
+	 * @throws ApiException
+	 */
+	public function getArtifact(string $strLink): SplFileObject
+	{
+		[$oResponse]	= $this->callLink(OAUTH_HTTP_METHOD_GET, $strLink, SplFileObject::class, 'application/pdf');
+
+		return $oResponse;
+	}
+
+	/**
+	 * @param string $strLink
+	 * @param string $strAcceptHeader
+	 * @return Manifest
+	 * @throws ApiException
+	 */
+	public function getManifest(string $strLink, string $strAcceptHeader): Manifest
+	{
+		[$oResponse]	= $this->callLink(OAUTH_HTTP_METHOD_GET, $strLink, Manifest::class, $strAcceptHeader);
+
+		return $oResponse;
+	}
+
+	/**
+	 * @param string $strLink
+	 * @param string $strAcceptHeader
+	 * @return Shipments
+	 * @throws ApiException
+	 */
+	public function getShipments(string $strLink, string $strAcceptHeader): Shipments
+	{
+		[$oResponse]	= $this->callLink(OAUTH_HTTP_METHOD_GET, $strLink, Shipments::class, $strAcceptHeader);
+
+		return $oResponse;
+	}
+
+	/**
+	 * @param string $strLink
+	 * @param string $strAcceptHeader
+	 * @return ShipmentInfo
+	 * @throws ApiException
+	 */
+	public function getShipment(string $strLink, string $strAcceptHeader): ShipmentInfo
+	{
+		[$oResponse]	= $this->callLink(OAUTH_HTTP_METHOD_GET, $strLink, ShipmentInfo::class, $strAcceptHeader);
+
+		return $oResponse;
+	}
+
+	/**
+	 * @param string $strLink
+	 * @param string $strAcceptHeader
+	 * @throws ApiException
+	 */
+	public function deleteShipment(string $strLink, string $strAcceptHeader): void
+	{
+		$this->callLink(OAUTH_HTTP_METHOD_DELETE, $strLink, 'string', $strAcceptHeader);
+	}
+
+
+	/**
+	 * @param string $strMethod
+	 * @param string $strLink
+	 * @param string $strReturnType
+	 * @param string $strAcceptHeader
+	 * @param string $strContentType
+	 * @return array
+	 * @throws ApiException
+	 */
+	protected function callLink(string $strMethod, string $strLink, string $strReturnType, string $strAcceptHeader, string $strContentType = 'application/xml'): array
+	{
+		$oRequest	= $this->getLinkRequest($strMethod, $strLink, $strAcceptHeader, $strContentType);
+		try
+		{
+			$oOptions	= $this->createHttpClientOption();
+			$bDone		= false;
+			$fStartTime	= microtime(true);
+
+			# loop until we get a valid answer or an exception occurs
+			do
+			{
+				try
+				{
+					$oResponse		= $this->client->send($oRequest, $oOptions);
+
+					$iStatusCode	= $oResponse->getStatusCode();
+
+					if($iStatusCode !== 202 || microtime(true) - $fStartTime > 20 )
+					{
+						$bDone	= true;
+					}
+				}
+				catch (RequestException $oException)
+				{
+					# if code = "Try Later" && elapsed time < 20 seconds, try again
+					if($oException->getCode() === 202 && microtime(true) - $fStartTime < 20)
+					{
+						sleep(1);
+						continue;
+					}
+					throw new ApiException(
+						"[{$oException->getCode()}] {$oException->getMessage()}",
+						$oException->getCode(),
+						$oException->getResponse() ? $oException->getResponse()->getHeaders() : null,
+						$oException->getResponse() ? $oException->getResponse()->getBody()->getContents() : null
+					);
+				}
+			}
+			while (!$bDone);
+
+			# Getting a 202 error here means a Timeout
+			if($iStatusCode < 200 || $iStatusCode > 299 || $iStatusCode === 202)
+			{
+				throw new ApiException(
+					sprintf(
+						'[%d] Error connecting to the API (%s)',
+						$iStatusCode,
+						$oRequest->getUri()
+					),
+					$iStatusCode,
+					$oResponse->getHeaders(),
+					$oResponse->getBody()
+				);
+			}
+			$oResponseBody	= $oResponse->getBody();
+			if($strReturnType === SplFileObject::class)
+			{
+				$oContent	= $oResponseBody; //stream goes to serializer
+			}
+			else
+			{
+				$strXML		= $oResponseBody->getContents();
+
+				if($strReturnType === 'string')
+				{
+					$oContent	= $strXML;
+				}
+				else
+				{
+					$oXML		= simplexml_load_string($strXML);
+					$oDecorator	= new JsonSimpleXMLElementDecorator($oXML, true);
+					$oContent	= json_encode($oDecorator, JSON_PRETTY_PRINT);
+					$oContent	= json_decode($oContent);
+				}
+			}
+
+			$oReturn	=
+				$oResponse->getStatusCode() === 204 ? # Code 204 returns nothing
+					null :
+					ObjectSerializer::deserialize($oContent, $strReturnType, [])
+			;
+
+			return [
+				$oReturn,
+				$oResponse->getStatusCode(),
+				$oResponse->getHeaders()
+			];
+		}
+		catch (ApiException $oException)
+		{
+			switch ($oException->getCode())
+			{
+				case 200:
+					$oData	= ObjectSerializer::deserialize(
+						$oException->getResponseBody(),
+						$strReturnType,
+						$oException->getResponseHeaders()
+					);
+					$oException->setResponseObject($oData);
+					break;
+				case 202:
+				case 400:
+				case 401:
+				case 403:
+				case 404:
+				case 406:
+				case 415:
+				case 500:
+					$oData	= ObjectSerializer::deserialize(
+						$oException->getResponseBody(),
+						ErrorResponseObject::class,
+						$oException->getResponseHeaders()
+					);
+					$oException->setResponseObject($oData);
+					break;
+			}
+			throw $oException;
+		}
+	}
+
+	/**
+	 * @param string $strMethod
+	 * @param string $strLink
+	 * @param string $strAccept
+	 * @param string $strContentType
+	 * @return Request
+	 */
+	protected function getLinkRequest(string $strMethod, string $strLink, string $strAccept, string $strContentType): Request
+	{
+		$arrHeaders	= $this->headerSelector->selectHeaders(
+			[$strAccept],
+			[$strContentType]
+		);
+
+		if ($this->config->getUsername() !== null || $this->config->getPassword() !== null)
+		{
+			$arrHeaders['Authorization']	= 'Basic ' . base64_encode($this->config->getUsername() . ":" . $this->config->getPassword());
+		}
+
+		$arrHeaders['Accept-language']	= ObjectSerializer::toHeaderValue('en-CA');
+
+  		if ($this->config->getUserAgent())
+  		{
+			$arrHeaders['User-Agent']		= $this->config->getUserAgent();
+  		}
+
+  		return new Request(
+			$strMethod,
+			$strLink,
+			$arrHeaders,
+			''
+		);
+	}
 }
