@@ -897,11 +897,16 @@ class DefaultApi
 			else
 			{
 				$strXML		= $oResponseBody->getContents();
-				$oXML		= simplexml_load_string($strXML);
-				$oDecorator	= new JsonSimpleXMLElementDecorator($oXML, true);
-				$oContent	= json_encode($oDecorator, JSON_PRETTY_PRINT);
-				if($strReturnType !== 'string')
+
+				if($strReturnType === 'string')
 				{
+					$oContent	= $strXML;
+				}
+				else
+				{
+					$oXML		= simplexml_load_string($strXML);
+					$oDecorator	= new JsonSimpleXMLElementDecorator($oXML, true);
+					$oContent	= json_encode($oDecorator, JSON_PRETTY_PRINT);
 					$oContent	= json_decode($oContent);
 				}
 			}
