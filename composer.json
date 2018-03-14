@@ -8,6 +8,7 @@
         "api"
     ],
     "repositories": [
+       {"type": "vcs", "url": "https://github.com/pear/XML_Serializer"},
        {"type": "composer", "url": "https://repo.packagist.com/spysystem/"},
        {"packagist.org": false}
  	],
@@ -25,7 +26,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^6.2",
-        "pear/xml_serializer": "0.*",
+        "pear/XML_Serializer": "*",
         "spysystem/json-simplexmlelement-decorator": "~1.0.0"
     },
     "require-dev": {

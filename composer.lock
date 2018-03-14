@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "284c72aa07a65026097c183331f29439",
+    "content-hash": "7682f2ba02e63bf141c5471118319429",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -53,7 +53,7 @@
                     "GuzzleHttp\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -117,7 +117,7 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -178,7 +178,7 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -206,78 +206,6 @@
             "time": "2017-03-20T17:10:46+00:00"
         },
         {
-            "name": "pear/archive_tar",
-            "version": "1.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "43455c960da70e655c6bdf8ea2bc8cc1a6034afb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/43455c960da70e655c6bdf8ea2bc8cc1a6034afb",
-                "reference": "43455c960da70e655c6bdf8ea2bc8cc1a6034afb",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/spysystem/dists/%package%/%version%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "pear/pear-core-minimal": "^1.10.0alpha2",
-                "php": ">=5.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*"
-            },
-            "suggest": {
-                "ext-bz2": "bz2 compression support.",
-                "ext-xz": "lzma2 compression support.",
-                "ext-zlib": "Gzip compression support."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Archive_Tar": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "./"
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Vincent Blavet",
-                    "email": "vincent@phpconcept.net"
-                },
-                {
-                    "name": "Greg Beaver",
-                    "email": "greg@chiaraquartet.net"
-                },
-                {
-                    "name": "Michiel Rook",
-                    "email": "mrook@php.net"
-                }
-            ],
-            "description": "Tar file management class",
-            "homepage": "https://github.com/pear/Archive_Tar",
-            "keywords": [
-                "archive",
-                "tar"
-            ],
-            "time": "2017-06-11T17:28:11+00:00"
-        },
-        {
             "name": "pear/console_getopt",
             "version": "v1.4.1",
             "source": {
@@ -303,7 +231,7 @@
                     "Console": "./"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "include-path": [
                 "./"
             ],
@@ -331,17 +259,17 @@
             "time": "2015-07-20T20:28:12+00:00"
         },
         {
-            "name": "pear/pear",
-            "version": "v1.10.5",
+            "name": "pear/pear-core-minimal",
+            "version": "v1.10.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pear/pear-core.git",
-                "reference": "e93b1c7bfe22c3a34ed54a195738283d11a09e30"
+                "url": "https://github.com/pear/pear-core-minimal.git",
+                "reference": "070f0b600b2caca2501e2c9b7e553016e4b0d115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/pear-core/zipball/e93b1c7bfe22c3a34ed54a195738283d11a09e30",
-                "reference": "e93b1c7bfe22c3a34ed54a195738283d11a09e30",
+                "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/070f0b600b2caca2501e2c9b7e553016e4b0d115",
+                "reference": "070f0b600b2caca2501e2c9b7e553016e4b0d115",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -351,98 +279,47 @@
                 ]
             },
             "require": {
-                "ext-pcre": "*",
-                "ext-xml": "*",
-                "pear/archive_tar": "*",
-                "pear/console_getopt": "*",
-                "pear/structures_graph": "*",
-                "pear/xml_util": "*"
+                "pear/console_getopt": "~1.4",
+                "pear/pear_exception": "~1.0"
             },
             "replace": {
-                "pear/pear-core-minimal": "*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*"
-            },
-            "suggest": {
-                "pear/pear_frontend_gtk": "For GTK support",
-                "pear/pear_frontend_web": "For Web support"
+                "rsky/pear-core-min": "self.version"
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "./"
-                ]
+                "psr-0": {
+                    "": "src/"
+                }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "include-path": [
-                "./"
+                "src/"
             ],
             "license": [
-                "BSD-2-Clause"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
-                    "name": "Helgi Thormar",
-                    "email": "dufuz@php.net",
-                    "role": "Lead"
-                },
-                {
-                    "name": "Martin Jansen",
-                    "email": "mj@php.net",
-                    "role": "Helper"
-                },
-                {
-                    "name": "Stig Bakken",
-                    "email": "stig@php.net",
-                    "role": "Lead"
-                },
-                {
-                    "name": "Pierre-Alain Joye",
-                    "email": "pierre@php.net",
-                    "role": "Lead"
-                },
-                {
-                    "name": "Tias Guns",
-                    "email": "tias@php.net",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Tim Jackson",
-                    "email": "timj@php.net",
-                    "role": "Helper"
-                },
-                {
-                    "name": "Bertrand Gugger",
-                    "email": "toggg@php.net",
-                    "role": "Helper"
-                },
-                {
-                    "name": "Greg Beaver",
-                    "email": "cellog@php.net",
-                    "role": "Lead"
-                },
-                {
-                    "name": "Tomas V.V.Cox",
-                    "email": "cox@idecnet.com",
+                    "name": "Christian Weiske",
+                    "email": "cweiske@php.net",
                     "role": "Lead"
                 }
             ],
-            "description": "This is the definitive source of PEAR's core files.",
-            "time": "2017-06-27T12:10:49+00:00"
+            "description": "Minimal set of PEAR core files to be used as composer dependency",
+            "time": "2017-02-28T16:46:11+00:00"
         },
         {
-            "name": "pear/structures_graph",
-            "version": "v1.1.1",
+            "name": "pear/pear_exception",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pear/Structures_Graph.git",
-                "reference": "608fdc835a62fb238e61bd1cf0aaf6c7a4420b5c"
+                "url": "https://github.com/pear/PEAR_Exception.git",
+                "reference": "8c18719fdae000b690e3912be401c76e406dd13b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Structures_Graph/zipball/608fdc835a62fb238e61bd1cf0aaf6c7a4420b5c",
-                "reference": "608fdc835a62fb238e61bd1cf0aaf6c7a4420b5c",
+                "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/8c18719fdae000b690e3912be401c76e406dd13b",
+                "reference": "8c18719fdae000b690e3912be401c76e406dd13b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -451,28 +328,46 @@
                     }
                 ]
             },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Structures": "./"
+            "require": {
+                "php": ">=4.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "class",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload": {
+                "psr-0": {
+                    "PEAR": ""
+                }
+            },
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "include-path": [
-                "./"
+                "."
             ],
             "license": [
-                "PHP License"
+                "BSD-2-Clause"
             ],
             "authors": [
                 {
-                    "name": "Sérgio Carvalho",
-                    "email": "sergiosgc@gmail.com",
-                    "role": "Lead"
+                    "name": "Helgi Thormar",
+                    "email": "dufuz@php.net"
+                },
+                {
+                    "name": "Greg Beaver",
+                    "email": "cellog@php.net"
                 }
             ],
-            "description": "More info available on: http://pear.php.net/package/Structures_Graph",
-            "time": "2015-07-20T20:05:12+00:00"
+            "description": "The PEAR Exception base class.",
+            "homepage": "https://github.com/pear/PEAR_Exception",
+            "keywords": [
+                "exception"
+            ],
+            "time": "2015-02-10T20:07:52+00:00"
         },
         {
             "name": "pear/xml_parser",
@@ -506,7 +401,7 @@
                     "XML": "./"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "include-path": [
                 "./"
             ],
@@ -540,27 +435,21 @@
         },
         {
             "name": "pear/xml_serializer",
-            "version": "v0.21.0",
+            "version": "v0.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/XML_Serializer.git",
-                "reference": "72b619e5e81d5063ec82873c7b1234504e9dbbbd"
+                "reference": "f171521481144ba7fe1dd26fab5d56626248b173"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/XML_Serializer/zipball/72b619e5e81d5063ec82873c7b1234504e9dbbbd",
-                "reference": "72b619e5e81d5063ec82873c7b1234504e9dbbbd",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/spysystem/dists/%package%/%version%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "url": "https://api.github.com/repos/pear/XML_Serializer/zipball/f171521481144ba7fe1dd26fab5d56626248b173",
+                "reference": "f171521481144ba7fe1dd26fab5d56626248b173",
+                "shasum": ""
             },
             "require": {
                 "ext-xml": "*",
-                "pear/pear": "*",
+                "pear/pear-core-minimal": "*",
                 "pear/xml_parser": "*",
                 "pear/xml_util": "*"
             },
@@ -573,7 +462,6 @@
                     "XML": "./"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "include-path": [
                 "./"
             ],
@@ -582,18 +470,22 @@
             ],
             "authors": [
                 {
-                    "name": "Stephan Schmidt",
                     "email": "schst@php-tools.net",
+                    "name": "Stephan Schmidt",
                     "role": "Lead"
                 },
                 {
-                    "name": "Chuck Burgess",
                     "email": "ashnazg@php.net",
+                    "name": "Chuck Burgess",
                     "role": "Lead"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/XML_Serializer",
-            "time": "2016-07-04T21:32:00+00:00"
+            "support": {
+                "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=XML_Serializer",
+                "source": "https://github.com/pear/XML_Serializer"
+            },
+            "time": "2018-02-13T14:04:37+00:00"
         },
         {
             "name": "pear/xml_util",
@@ -628,7 +520,7 @@
                     "XML_Util": "./"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "include-path": [
                 "./"
             ],
@@ -690,7 +582,7 @@
                     "Psr\\Http\\Message\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -714,16 +606,16 @@
         },
         {
             "name": "spysystem/json-simplexmlelement-decorator",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spysystem/json-simplexmlelement-decorator.git",
-                "reference": "75b7e7bbaa4c37c6d76621ad446cdf705918cc63"
+                "reference": "19c22af0f96f8d2ffdbbebbe7b7919406b368c57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spysystem/json-simplexmlelement-decorator/zipball/75b7e7bbaa4c37c6d76621ad446cdf705918cc63",
-                "reference": "75b7e7bbaa4c37c6d76621ad446cdf705918cc63",
+                "url": "https://api.github.com/repos/spysystem/json-simplexmlelement-decorator/zipball/19c22af0f96f8d2ffdbbebbe7b7919406b368c57",
+                "reference": "19c22af0f96f8d2ffdbbebbe7b7919406b368c57",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -746,10 +638,10 @@
                 "proprietary"
             ],
             "support": {
-                "source": "https://github.com/spysystem/json-simplexmlelement-decorator/tree/master",
+                "source": "https://github.com/spysystem/json-simplexmlelement-decorator/tree/1.0.1",
                 "issues": "https://github.com/spysystem/json-simplexmlelement-decorator/issues"
             },
-            "time": "2018-03-02T09:17:33+00:00"
+            "time": "2018-03-06T08:33:53+00:00"
         }
     ],
     "packages-dev": [
@@ -794,7 +686,7 @@
                     "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -860,7 +752,7 @@
                     "Symfony\\CS\\": "Symfony/CS/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -916,7 +808,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -981,7 +873,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1035,7 +927,7 @@
                     ]
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1089,7 +981,7 @@
                     "Prophecy\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1164,7 +1056,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1218,7 +1110,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1266,7 +1158,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1321,7 +1213,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1377,7 +1269,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1452,7 +1344,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1515,7 +1407,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1568,7 +1460,7 @@
                     "Psr\\Log\\": "Psr/Log/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1626,7 +1518,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1694,7 +1586,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1752,7 +1644,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1810,7 +1702,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1884,7 +1776,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1938,7 +1830,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -1986,7 +1878,7 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2067,7 +1959,7 @@
                     "CodeSniffer/Standards/Zend/Sniffs/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2083,11 +1975,16 @@
                 "phpcs",
                 "standards"
             ],
+            "support": {
+                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
+                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki",
+                "source": "https://github.com/squizlabs/PHP_CodeSniffer"
+            },
             "time": "2017-05-22T02:43:20+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -2162,7 +2059,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -2224,7 +2121,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2293,7 +2190,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2348,16 +2245,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6a615613745cef820d807443f32076bb9f5d0a38"
+                "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6a615613745cef820d807443f32076bb9f5d0a38",
-                "reference": "6a615613745cef820d807443f32076bb9f5d0a38",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/a479817ce0a9e4adfd7d39c6407c95d97c254625",
+                "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2399,7 +2296,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-11T17:15:12+00:00"
+            "time": "2018-03-05T18:28:11+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2441,7 +2338,7 @@
                     "bootstrap.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2468,7 +2365,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -2523,7 +2420,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -2578,7 +2475,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.5",
+            "version": "v3.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -2678,7 +2575,7 @@
                     "Webmozart\\Assert\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.com/spysystem/downloads/",
             "license": [
                 "MIT"
             ],
