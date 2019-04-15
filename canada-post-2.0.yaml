@@ -3,8 +3,8 @@ info:
   version: '1.0.0'
   title: Canada Post REST Client
   description: Library for Canada Post REST API
-  
-produces: 
+
+produces:
   - application/xml
 
 consumes:
